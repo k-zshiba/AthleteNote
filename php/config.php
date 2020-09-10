@@ -1,8 +1,5 @@
 <?php
 
-define('DSN','mysql:host=localhost;dbname=???');
+define('DSN','mysql:host=localhost;dbname=userdata');
 define('DB_USER','root');
-define('DB_PASS','???');
-
-
-?>
+define('DB_PASS','Ks04982498');
