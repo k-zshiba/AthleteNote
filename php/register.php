@@ -10,18 +10,15 @@ $check_password = $_POST['passwordCheck'];
 //データベースに接続
 try
 {
-  $dbh = new PDO(DSN,DB_USER,DB_PASS);
+  $dbh = new PDO(DSN, DB_USER, DB_PASS);
 
-  $sql = "SELECT * FROM `userdata` WHERE 1;";
-  
-  $data = $dbh->query($sql);
-
-  echo $data;
+  $sql = "SELECT * FROM userdata where USERID =  $user_id;";
+  $userIdisInDB = $dbh->query($sql);  
 }
 catch(PDOException $e)
 {
   exit('データベース接続失敗。'.$e->getMessage());
 }
 
-echo $data;
+
 // データベースにユーザIDをパスワードを登録
