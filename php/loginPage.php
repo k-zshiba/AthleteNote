@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lamg="ja">
 <head>
