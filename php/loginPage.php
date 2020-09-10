@@ -39,10 +39,6 @@
             <input type="password" name ="passwordCheck" id="InputPasswordCheck">
             <small id="passwordCheckHelp">もう一度パスワードを入力してください</small>
 
-            <?php if($_POST['password'] != $_POST['passwordCheck']):?>
-              <p> <?php echo "確認用パスワードは必須項目です。";?></p>
-            <?php endif; ?>  
-
             <button type="submit">登録</button>
         </form>
 
