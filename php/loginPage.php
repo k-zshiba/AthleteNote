@@ -9,7 +9,7 @@
 <body>
   <h2>初めての方はこちら</h2>
         <form name="register" action="register.php" method="POST">
-          <ul>
+          <!-- <ul>
             <?php if(empty($_POST['userID'])):?>
                 <li> <?php echo "User IDは必須項目です。";?> </li>
               <?php endif; ?>
@@ -21,7 +21,7 @@
               <?php if(empty($_POST['passwordCheck'])):?>
                 <li> <?php echo "確認用パスワードは必須項目です。";?> </li>
               <?php endif; ?>         
-          </ul>
+          </ul> -->
 
 
             <label for="InputUserID">ID</label>
@@ -39,7 +39,7 @@
             <input type="password" name ="passwordCheck" id="InputPasswordCheck">
             <small id="passwordCheckHelp">もう一度パスワードを入力してください</small>
 
-            <button type="submit">登録</button>
+            <button type="submit" id = "signUp">登録</button>
         </form>
 
   <h2>既に登録済みの方はこちら</h2>
