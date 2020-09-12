@@ -1,5 +1,5 @@
 <?php
-require_once('config.php');
+require_once('dbConfig.php');
 
 session_start();
 
@@ -15,11 +15,11 @@ $error_message = "";
   }
   if(empty($_POST['password'])){
     $error_message = 'パスワードが入力されていません。';
-    echo $error_message;
+    echo $error_message,'<button type="button" onclick=history.back()>戻る</button>';
   }
   if(empty($_POST['passwordCheck'])){
     $error_message = '確認用パスワードが入力されていません。';
-    echo $error_message;
+    echo $error_message,'<button type="button" onclick=history.back()>戻る</button>';
   }
   if($_POST['password'] != $_POST['passwordCheck']){
     $error_message = 'パスワードが一致しません。';
@@ -47,6 +47,7 @@ $error_message = "";
       echo '登録完了';
     } catch (\Exception $e){
       echo 'このユーザIDは登録されています。';
+      return FALSE;
     }
   }
 // ajaxでかく
