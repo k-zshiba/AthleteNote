@@ -9,19 +9,7 @@
 <body>
   <h2>初めての方はこちら</h2>
         <form name="register" action="register.php" method="POST">
-          <!-- <ul>
-            <?php if(empty($_POST['userID'])):?>
-                <li> <?php echo "User IDは必須項目です。";?> </li>
-              <?php endif; ?>
 
-              <?php if(empty($_POST['password'])):?>
-                <li> <?php echo "パスワードは必須項目です。";?> </li>
-              <?php endif; ?>
-
-              <?php if(empty($_POST['passwordCheck'])):?>
-                <li> <?php echo "確認用パスワードは必須項目です。";?> </li>
-              <?php endif; ?>         
-          </ul> -->
 
 
             <label for="InputUserID">ID</label>
