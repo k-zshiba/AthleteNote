@@ -2,13 +2,7 @@
 require_once('dbConfig.php');
 
 session_start();
-
-
 //データベースに接続
-
-
-
-
 try {
   $pdo = new PDO(DSN, DB_USER, DB_PASS);
   $stmt = $pdo->prepare("SELECT * FROM userdata where userID = ?");
@@ -19,7 +13,7 @@ try {
 }
 // データベースにユーザIDが存在しているか確認
 if(!isset($row['userID'])){
-  echo 'ユーザIDまたはパスワードが間違っています。';
+  echo 'ユーザIDまたはパスワードが間違っています。','<button type="button" onclick=history.back()>戻る</button>';
   return FALSE;
 }
 //パスワード確認後sessionにメールアドレスを渡す
@@ -29,7 +23,7 @@ if ($_POST['password'] == $row['password']) {
   header('Location: topPage.php');
   exit;
 } else {
-  echo 'ユーザID又はパスワードが間違っています。';
+  echo 'ユーザID又はパスワードが間違っています。','<button type="button" onclick=history.back()>戻る</button>';
   return FALSE;
 }
 
