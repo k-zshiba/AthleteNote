@@ -1,9 +1,10 @@
 <?php 
-  if(isset($_SESSION['userID'])){
-    echo '<h2>ようこそ'. $_SESSION['userID']."さん</h2>";
-    exit;
-  }
-  ?>
+session_start();
+
+if(isset($_SESSION['userID'])){
+  echo '<h2>ようこそ'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
+}
+?>
 
 <!DOCTYPE html>
 <html lamg="ja">
