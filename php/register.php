@@ -21,7 +21,7 @@ $error_message = "";
       $error_message = 'パスワードが一致しません。';
       echo $error_message,'<button type="button" onclick=history.back()>戻る</button>';
     }
-
+  // 各formに適当な値が入っている場合
     if(!empty($_POST['userID'])&&$_POST['password'] == $_POST['passwordCheck']){
       $user_id = $_POST['userID'];
       $password = $_POST['password'];
