@@ -17,7 +17,7 @@ if(isset($_SESSION['userID'])){
 <body>
   <h2>トップ画面</h2>
 
-  <a href="registerLogPage\registerPhysicalConditionLog.php">練習登録画面へ</a>
+  <a href="registerLogPage\registerWorkOutLog.php">練習登録画面へ</a>
 
   <a href="registerLogPage\registerPhysicalConditionLog.php">体調登録画面へ</a>
 
