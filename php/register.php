@@ -38,7 +38,7 @@ $error_message = "";
   
       // データベースにユーザID、パスワードを登録
       try {
-        $stmt = $pdo->prepare("SELECT * FROM userdata where userID = ?");
+        $stmt = $pdo->prepare("SELECT * FROM userdata WHERE userID = ?");
         $stmt->execute([$_POST['userID']]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if(!isset($row['userID'])){
