@@ -26,5 +26,3 @@ if ($_POST['password'] == $row['password']) {
   echo 'ユーザID又はパスワードが間違っています。','<button type="button" onclick=history.back()>戻る</button>';
   return FALSE;
 }
-
-?>
