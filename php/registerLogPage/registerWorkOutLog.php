@@ -11,6 +11,18 @@ if(!isset($_SESSION['userID'])){
 $user_id = $_SESSION['userID'];
 $error_message = "";
 
+$image_folder = "..\\userContents";
+
+$image_path = "\\"  + $user_id + $image_folder;
+
+var_dump($image_path);
+
+// if (!mkdir($image_path, 0777, true)) {
+//   exit('Failed to create folders...');
+// }
+
+
+
 if(empty($_POST['date'])){
   $error_message = "練習日を入力してください。";
   echo '<span>' . $error_message . '</span>';
