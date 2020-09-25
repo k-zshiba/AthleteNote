@@ -28,17 +28,33 @@ try{
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
+  <h1><?php echo $_SESSION['userID'].'さん'; ?></h1>
   <h2>体調ログ一覧</h2>
-<ul>
-<?php
-foreach($row as $output){
-  echo "<li>日付: $output[date] 疲労度: $output[fatigue] 体重: $output[bodyweight] 体温: $output[bodytemperature] 睡眠時間: $output[sleeptime]<br></li>";
-}
-?>
+  <table border=1>
+    <thead>
+      <td>日付</td>
+      <td>疲労度</td>
+      <td>体重</td>
+      <td>体温</td>
+      <td>睡眠時間</td>
+    </thead>
+    <tbody>
+    <?php
+    foreach($row as $output){
+        echo 
+          '<tr>'.
+            '<td>'. $output['date'].'</td>'.
+            '<td>'. $output['fatigue'].'</td>'.
+            '<td>'. $output['bodyweight'].'</td>'.
+            '<td>'. $output['bodytemperature'].'</td>'.
+            '<td>'. $output['sleeptime'].'</td>'.
+          '</tr>';
+    }
+    ?>
+    </tbody>
+  </table>
 
-
-</ul>
-
+<button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
 
 
 
