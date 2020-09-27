@@ -1,9 +1,8 @@
 <?php
 require_once('dbConfig.php');
-
 session_start();
 
-//データベースに接続
+// データベースにユーザIDが存在しているか確認
 try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
     $stmt = $pdo->prepare("SELECT * FROM userdata where userID = ?");
@@ -12,20 +11,24 @@ try {
 }catch (\Exception $e) {
     echo $e->getMessage();
 }
-// データベースにユーザIDが存在しているか確認
-if (!isset($row['userID'])) {
-    echo 'ユーザIDまたはパスワードが間違っています。','<button type="button" onclick=history.back()>戻る</button>';
-    // return FALSE;
-}
-//パスワード確認後sessionにメールアドレスを渡す
-$password = $_POST['password'];
-$correct_password = $row['password'];
-if (password_verify($password,$correct_password)) {
-    session_regenerate_id(true); //session_idを新しく生成し、置き換える
-    $_SESSION['userID'] = $row['userID'];
-    header('Location: topPage.php');
-    exit;
+
+if (empty($_POST['password']) || empty($_POST['userID'])) {
+    $error_message = 'ユーザIDもしくはパスワードが入力されていません。<br>'.'<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+    echo $error_message;
 }else {
-    echo 'ユーザID又はパスワードが間違っています。','<button type="button" onclick=history.back()>戻る</button>';
-    return FALSE;
+    if (!isset($row['userID'])) {
+        echo 'ユーザIDまたはパスワードが間違っています。<br>'.'<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+    }else {
+        $password = $_POST['password'];
+        $correct_password = $row['password'];
+//パスワード確認後sessionにユーザIDを渡す
+        if (password_verify($password,$correct_password)) {
+            session_regenerate_id(true); //session_idを新しく生成し、置き換える
+            $_SESSION['userID'] = $row['userID'];
+            header('Location: topPage.php');
+            exit;
+        }else {
+            echo 'ユーザIDまたはパスワードが間違っています。<br>','<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+        }
+    }
 }
