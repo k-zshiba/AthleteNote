@@ -6,7 +6,7 @@ if(!isset($_SESSION['userID'])){
   exit;
 }
 
-require_once('dbConfig.php');
+require_once('.\dbConfig.php');
 
 
 try{
@@ -37,6 +37,9 @@ try{
       <td>体重</td>
       <td>体温</td>
       <td>睡眠時間</td>
+      <td>編集</td>
+      <td>削除</td>
+
     </thead>
     <tbody>
     <?php
@@ -48,6 +51,12 @@ try{
             '<td>'. $output['bodyweight'].'</td>'.
             '<td>'. $output['bodytemperature'].'</td>'.
             '<td>'. $output['sleeptime'].'</td>'.
+            '<form method="POST" action="editPhysicalConditionLog.php">'.
+              '<td>'. '<button type="submit" name="edit-button"value="'.$output['physicalconditionlogID'].'" readonly>編集</button></td>'.
+            '</form>'.
+            '<form method="POST" action="deletePhysicalConditionLog.php">'.
+              '<td>'. '<button type="submit" name="delete-button"value="'.$output['physicalconditionlogID'].'" readonly>削除</button></td>'.
+            '</form>'.
           '</tr>';
     }
     ?>
