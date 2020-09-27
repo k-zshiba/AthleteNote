@@ -8,18 +8,22 @@ session_start();
 
 // form のバリデーション
 $error_message = "";
+$formHasError = false;
 
 if (empty($_POST['userID'])) {
-    $error_message = 'ユーザIDが入力されていません。';
-    echo $error_message,'<button type="button" onclick=history.back()>戻る</button>';
+    $error_message = 'ユーザIDが入力されていません。<br>';
+    $formHasError = true;
+    echo $error_message;
 }
 if (empty($_POST['password']) || empty($_POST['passwordCheck'])) {
-    $error_message = 'パスワードもしくは確認用パスワードが入力されていません。';
-    echo $error_message,'<button type="button" onclick=history.back()>戻る</button>';
+    $error_message = 'パスワードもしくは確認用パスワードが入力されていません。<br>';
+    $formHasError = true;
+    echo $error_message;
 }else {
     if ($_POST['password'] != $_POST['passwordCheck']) {
-        $error_message = 'パスワードが一致しません。';
-        echo $error_message,'<button type="button" onclick=history.back()>戻る</button>';
+        $error_message = 'パスワードが一致しません。<br>';
+        $formHasError = true;
+        echo $error_message;
     }
 // 各formに適当な値が入っている場合
     if (!empty($_POST['userID'])&&$_POST['password'] == $_POST['passwordCheck']) {
@@ -45,10 +49,14 @@ if (empty($_POST['password']) || empty($_POST['passwordCheck'])) {
                     exit($e->getMessage());
                 }
             }else{
-                exit('このユーザIDは既に登録されています。<button type="button" onclick=history.back()>戻る</button>');
+                echo 'このユーザIDは既に登録されています。<br>'.'<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+                exit;
             }
           }catch (\Exception $e) {
               exit($e->getMessage()); 
           }
     }
+}
+if ($formHasError) {
+    echo '<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
 }
