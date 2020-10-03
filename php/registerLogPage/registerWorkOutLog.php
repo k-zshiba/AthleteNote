@@ -25,8 +25,8 @@ if(empty($_POST['date'])){
     $date = $_POST['date'];
     $intensity = $_POST['intensity'];
     $thought = $_POST['thought'];
-    $contentID = 'user_'.$user_id. date('YmdHis');
     $menu = $_POST['menu'];
+    $contentID = $user_id.$date;
     $content1_extension = pathinfo(basename($_FILES['content1']['name']),PATHINFO_EXTENSION);
     $content2_extension = pathinfo(basename($_FILES['content2']['name']),PATHINFO_EXTENSION);
 
@@ -35,19 +35,22 @@ if(empty($_POST['date'])){
 try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
     // workoutlog テーブルに登録する
-    $stmt = $pdo->prepare("INSERT INTO workoutlog(userID, date, intensity, thought, contentID, menu) value(?,?,?,?,?,?)");
-    $stmt->execute([$_SESSION['userID'], $date,$intensity,$thought,$$contentID,$menu]);
-    $add_contents_date_folder = $user_contents_folder.'\\'.$contentID;
-    $content1 = $add_contents_date_folder.'\\'.'content1.'.$content1_extension;
-    $content2 = $add_contents_date_folder.'\\'.'content2.'.$content2_extension;
+    $stmt = $pdo->prepare("INSERT INTO workoutlog(userID, date, intensity, thought, menu, contentID) value(?,?,?,?,?,?)");
+    $stmt->execute([$_SESSION['userID'], $date,$intensity,$thought,$menu,$contentID]);
+    $user_content_folder_in_date = $user_contents_folder.'\\'.$date;
+    $content1 = $user_content_folder_in_date.'\\'.'content1.'.$content1_extension;
+    $content2 = $user_content_folder_in_date.'\\'.'content2.'.$content2_extension;
     // contents テーブルに登録する
     $stmt = $pdo->prepare("INSERT INTO contents(contentID, content1, content2) value(?,?,?)");
-    $stmt->execute([$contentID,$content1,$content2]);
-    mkdir($add_contents_date_folder, 0777, true);
+    $result = $stmt->execute([$contentID,$content1,$content2]);
+    if (empty(glob($user_contents_folder.'\*'.$date))) {
+        mkdir($user_content_folder_in_date, 0777, true);
+    }
     if (move_uploaded_file($_FILES['content1']['tmp_name'],$content1) && (move_uploaded_file($_FILES['content2']['tmp_name'],$content2))) {
         $stmt = null;
         $pdo = null;
         header('Location: successRegister.php');
+        exit;
     }else {
         echo 'アップロードに失敗しました。';
     }
