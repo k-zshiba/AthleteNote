@@ -1,38 +1,44 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['userID'])){
-  header("Location: ../loginPage.php");
-  exit;
+if (!isset($_SESSION['userID'])) {
+    header("Location: ../loginPage.php");
+    exit;
 }
 require_once('..\dbConfig.php');
 
 $error_message = "";
 
-if(empty($_POST['date'])){
-  $error_message = "登録日を入力してください。";
-  echo $error_message;
-}else{
-  $fatigue = $_POST['fatigue'];
-  $date = $_POST['date'];
-  $bodyweight = $_POST['bodyweight'];
-  $bodytemperature = $_POST['bodytemperature'];
-  $sleeptime = $_POST['sleeptime'];
+if (empty($_POST['date'])) {
+    $error_message = "登録日を入力してください。";
+    echo $error_message;
+}else {
+    $fatigue = $_POST['fatigue'];
+    $date = $_POST['date'];
+    $bodyweight = $_POST['bodyweight'];
+    $bodytemperature = $_POST['bodytemperature'];
+    $sleeptime = $_POST['sleeptime'];
 
 
   // data base接続
   try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
-  } catch(PDOException $e) {
-    exit('データベース接続失敗。'.$e->getMessage());
+      $pdo = new PDO(DSN, DB_USER, DB_PASS);
+  }catch (PDOException $e) {
+      exit('データベース接続失敗。'.$e->getMessage());
   }
 
   try {
-    $stmt = $pdo->prepare("INSERT INTO physicalconditionlog(userID, date, fatigue, bodyweight, bodytemperature, sleeptime) value(?,?,?,?,?,?)");
-    $stmt->execute([$_SESSION['userID'], $date,$fatigue,$bodyweight,$bodytemperature,$sleeptime]);
-    header('Location: successRegister.php');
-  } catch(PDOException $e) {
-    exit('データベース接続失敗。'.$e->getMessage());
+      $stmt = $pdo->prepare("INSERT INTO physicalconditionlog(userID, date, fatigue, bodyweight, bodytemperature, sleeptime) value(?,?,?,?,?,?)");
+      $stmt->execute([$_SESSION['userID'], $date,$fatigue,$bodyweight,$bodytemperature,$sleeptime]);
+      $result = $stmt->rowCount();
+      if ($result) {
+          header('Location: successRegister.php');
+          exit;
+      }else {
+          echo '登録に失敗しました。';
+      }
+  }catch (PDOException $e) {
+      exit('データベース接続失敗。'.$e->getMessage());
   }
 }
 ?>
