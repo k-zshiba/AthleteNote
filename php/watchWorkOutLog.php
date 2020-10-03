@@ -11,7 +11,7 @@ require_once('.\dbConfig.php');
 
 try{
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
-    $stmt = $pdo->prepare("SELECT * FROM physicalconditionlog WHERE userID = ? ORDER BY date ASC");
+    $stmt = $pdo->prepare("SELECT * FROM workoutlog WHERE userID = ? ORDER BY date ASC");
     $stmt->execute([$_SESSION['userID']]);
     $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }catch (\Exception $e){
@@ -45,24 +45,34 @@ try{
     foreach($row as $output){
         try{
             $pdo = new PDO(DSN, DB_USER, DB_PASS);
-            $stmt = $pdo->prepare("SELECT * FROM physicalconditionlog WHERE userID = ? ORDER BY date ASC");
-            $stmt->execute([$_SESSION['userID']]);
-            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
+            $stmt->execute([$output['contentID']]);
+            $content = $stmt->fetch(PDO::FETCH_ASSOC);
         }catch (\Exception $e){
             exit($e->getMessage());
       }
+      var_dump($content['content1']);
+
         echo 
           '<tr>'.
             '<td>'. $output['date'].'</td>'.
             '<td>'. $output['intensity'].'</td>'.
-            '<td>'. $output['thought'].'</td>'.
-            '<td>'. $output['contentID'].'</td>'.
-            '<td>'. $output['menu'].'</td>'.
-            '<form method="POST" action="editWorkOutLog.php">'.
-              '<td>'. '<button type="submit" name="edit-button"value="'.$output['physicalconditionlogID'].'">編集</button></td>'.
+            '<td>'. $output['thought'].'</td>';
+        if (isset($content['content1'])) {
+            echo '<td>'. '<img src="'.$content['content1'].'>'.'</td>';
+        }else {
+            echo '<td></td>';
+        }
+        if (isset($content['content2'])) {
+            echo '<td>'. '<img src="'.$content['content2'].'>'.'</td>';
+        }else {
+            echo '<td></td>';
+        }
+            echo '<form method="POST" action="editWorkOutLog.php">'.
+              '<td>'. '<button type="submit" name="edit-button"value="'.$output['contentID'].'">編集</button></td>'.
             '</form>'.
             '<form method="POST" action="deletePhysicalConditionLog.php">'.
-              '<td>'. '<button type="submit" name="delete-button"value="'.$output['physicalconditionlogID'].'">削除</button></td>'.
+              '<td>'. '<button type="submit" name="delete-button"value="'.$output['contentID'].'">削除</button></td>'.
             '</form>'.
           '</tr>';
     }
@@ -71,7 +81,6 @@ try{
   </table>
 
 <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
-
 
 
 
