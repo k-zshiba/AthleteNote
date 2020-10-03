@@ -69,6 +69,7 @@ if(empty($_POST['date'])){
     <input type="number" value = "6" name = "sleeptime" step = "0.5">時間<br> 
     <input type="submit" value = "登録する">
   </form>
+  <button type="button" onclick="location.href = '..\\topPage.php'">トップに戻る</button>
 
 </body>
 </html>
