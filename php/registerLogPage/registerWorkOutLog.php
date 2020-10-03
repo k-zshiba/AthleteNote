@@ -88,5 +88,6 @@ try {
     <textarea name="menu" rows="5" cols="40">ここに練習メニューを記入してください。</textarea><br>
     <button type="submit">登録する</button>
   </form>
+  <button type="button" onclick="location.href = '..\\topPage.php'">トップに戻る</button>
 </body>
 </html>
