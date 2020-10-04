@@ -30,18 +30,14 @@ try{
 <body>
   <h1><?php echo $_SESSION['userID'].'さん'; ?></h1>
   <h2>練習ログ一覧</h2>
+  
   <table border=1>
-    <thead>
-      <td>日付</td>
-      <td>強度</td>
-      <td>感想・意識</td>
-      <td>写真・動画</td>
-      <td>睡眠時間</td>
-      <td>メニュー</td>
-
-    </thead>
-    <tbody>
-    <?php
+    <tr>
+      <th>日付</th>
+      <th colspan=2>ユーザ名</th>
+      <th>強度</th>
+    </tr>
+<?php
     foreach($row as $output){
         try{
             $pdo = new PDO(DSN, DB_USER, DB_PASS);
@@ -50,39 +46,54 @@ try{
             $content = $stmt->fetch(PDO::FETCH_ASSOC);
         }catch (\Exception $e){
             exit($e->getMessage());
-      }
-      var_dump($content['content1']);
+        }
 
         echo 
-          '<tr>'.
-            '<td>'. $output['date'].'</td>'.
-            '<td>'. $output['intensity'].'</td>'.
-            '<td>'. $output['thought'].'</td>';
+        '<tr>'.
+          '<td colspan=1>'.$output['date'].'</td>'.
+          '<td colspan=2>'.$_SESSION['userID'].'</td>'.
+          '<td colspan=1>'.$output['intensity'].'</td>'.
+        '</tr>'.
+        '<tr>'.
+          '<th colspan=4>メニュー</th>'.
+        '</tr>'.
+        '<tr>'.
+          '<td colspan=4>'.$output['menu'].'</td>'.
+        '</tr>'.
+        '<tr>'.
+          '<th colspan=4>感想・意識</th>'.
+        '</tr>'.
+        '<tr>'.
+          '<td colspan=4>'.$output['thought'].'</td>'.
+        '</tr>'.
+        '<tr>'.
+          '<th colspan=4>写真・動画</th>'.
+        '</tr>'.
+        '<tr>';
         if (isset($content['content1'])) {
-            echo '<td>'. '<img src="'.$content['content1'].'>'.'</td>';
+          echo '<td colspan=2>'. '<img src="'.$content['content1'].'" style="width:100%;">'.'</td>';
         }else {
-            echo '<td></td>';
+            echo '<td colspan=2></td>';
         }
         if (isset($content['content2'])) {
-            echo '<td>'. '<img src="'.$content['content2'].'>'.'</td>';
+            echo '<td colspan=2>'. '<img src="'.$content['content2'].'" style="width:100%;">'.'</td>
+            </tr>';
         }else {
-            echo '<td></td>';
+            echo '<td colspan=2></td>
+            </tr>';
         }
-            echo '<form method="POST" action="editWorkOutLog.php">'.
-              '<td>'. '<button type="submit" name="edit-button"value="'.$output['contentID'].'">編集</button></td>'.
-            '</form>'.
-            '<form method="POST" action="deletePhysicalConditionLog.php">'.
-              '<td>'. '<button type="submit" name="delete-button"value="'.$output['contentID'].'">削除</button></td>'.
-            '</form>'.
-          '</tr>';
+        echo 
+        '<tr>'.
+          '<form method="POST" action="editWorkOutLog_form.php">'.
+            '<td>'. '<button type="submit" name="edit-button"value="'.$output['contentID'].'">編集</button></td>'.
+          '</form>'.
+          '<form method="POST" action="deletePhysicalConditionLog.php">'.
+            '<td>'. '<button type="submit" name="delete-button"value="'.$output['contentID'].'">削除</button></td>'.
+          '</form>';
+        '</tr>';
     }
-    ?>
-    </tbody>
+?>
   </table>
-
 <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
-
-
-
 </body>
 </html>
