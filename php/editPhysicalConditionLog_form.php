@@ -25,12 +25,12 @@ try {
 <html lamg="ja">
 <head>
   <meta charset="utf-8">
-  <title>体調登録</title>
+  <title>体調編集</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-  <h2>体調登録</h2>
+  <h2>体調編集</h2>
   <form action="editPCLog.php" method = "POST">
     日付<span> 必須</span><br>
     <?php echo '<input type="date" name="date" value="'.$row['date'].'"><br>'; ?>
@@ -53,6 +53,6 @@ try {
     "<button type='submit' name ='physicalconditionlogID' value='$physical_condition_log_id'>保存する</button>";
     ?>
   </form>
-
+  <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
 </body>
 </html>
