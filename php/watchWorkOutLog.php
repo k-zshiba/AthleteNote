@@ -83,17 +83,15 @@ try{
             </tr>';
         }
         echo 
-        '<tr>'.
+        '</table>'.
           '<form method="POST" action="editWorkOutLog_form.php">'.
             '<td>'. '<button type="submit" name="edit-button"value="'.$output['contentID'].'">編集</button></td>'.
           '</form>'.
           '<form method="POST" action="deletePhysicalConditionLog.php">'.
             '<td>'. '<button type="submit" name="delete-button"value="'.$output['contentID'].'">削除</button></td>'.
           '</form>';
-        '</tr>';
     }
 ?>
-  </table>
 <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
 </body>
 </html>
