@@ -3,20 +3,20 @@ session_start();
 require_once('./dbConfig.php');
 
 if(isset($_SESSION['userID'])){
-  echo '<h2>ようこそ'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
+    echo '<h2>ようこそ'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
 }else{
-  header("Location: loginPage.php");
-  exit;
+    header("Location: loginPage.php");
+    exit;
 }
 
 try {
-  $pdo = new PDO(DSN, DB_USER, DB_PASS);
-  $stmt = $pdo->prepare("SELECT * FROM physicalconditionlog WHERE userID = ?");
-  $stmt->execute([$_SESSION['userID']]);
-  $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $encoded_json_data = json_encode($row);
+    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $stmt = $pdo->prepare("SELECT * FROM physicalconditionlog WHERE userID = ?");
+    $stmt->execute([$_SESSION['userID']]);
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $encoded_json_data = json_encode($row);
 }catch (PDOExeption $e) {
-  exit($e->getMessage());
+    exit($e->getMessage());
 }
 ?>
 
@@ -49,5 +49,47 @@ try {
     </script>
   
   </canvas> -->
+  <div class="PC-chart-container" style="position: relative; height:80vh; width:80vw">
+    <canvas id="myChart"></canvas>
+  </div>
+  
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [1,2,3,4,5,6],
+        datasets: [{
+            label: 'test',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1,
+            lineTension: 0,
+        }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          stacked: true,
+          gridLines: {
+            display: true,
+            color: "rgba(255,99,132,0.2)"
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+          display: true
+          }
+        }]
+
+    }}
+});
+</script>
 </body>
 </html>
