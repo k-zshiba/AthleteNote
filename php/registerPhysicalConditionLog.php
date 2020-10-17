@@ -5,7 +5,7 @@ if (!isset($_SESSION['userID'])) {
     header("Location: ./loginPage.php");
     exit;
 }
-require_once('..\dbConfig.php');
+require_once('.\dbConfig.php');
 
 $error_message = "";
 
