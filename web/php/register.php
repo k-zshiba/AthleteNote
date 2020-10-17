@@ -49,7 +49,7 @@ if (empty($_POST['password']) || empty($_POST['passwordCheck'])) {
                     exit($e->getMessage());
                 }
             }else{
-                echo 'このユーザIDは既に登録されています。<br>'.'<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+                echo 'このユーザIDは既に登録されています。<br>'.'<button type="button" onclick="location.href=\'../loginPage.html\'">登録画面に戻る</button>';
                 exit;
             }
           }catch (\Exception $e) {
@@ -58,5 +58,5 @@ if (empty($_POST['password']) || empty($_POST['passwordCheck'])) {
     }
 }
 if ($formHasError) {
-    echo '<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+    echo '<button type="button" onclick="location.href=\'../loginPage.html\'">登録画面に戻る</button>';
 }
