@@ -27,16 +27,17 @@ try {
   <title>トップ画面</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+  <script> src="../javascript/getPCList.js"</script>
 </head>
 
 <body>
   <h2>トップ画面</h2>
-  <a href=".\registerWorkOutLog.php">練習登録画面へ</a>
-  <a href=".\registerPhysicalConditionLog.php">体調登録画面へ</a>
-  <a href=".\watchPCLog.php">体調ログ一覧へ</a>
-  <a href=".\watchWorkOutLog.php">練習ログ一覧へ</a>
-  <a href=".\watchWorkOutLogForOthers.php">他の人のログを見る</a>
-  <a href=".\logout.php">ログアウト</a>
+  <a href="./registerWorkOutLog.php">練習登録画面へ</a>
+  <a href="./registerPhysicalConditionLog.php">体調登録画面へ</a>
+  <a href="./watchPCLog.php">体調ログ一覧へ</a>
+  <a href="./watchWorkOutLog.php">練習ログ一覧へ</a>
+  <a href="./watchWorkOutLogForOthers.php">他の人のログを見る</a>
+  <a href="./logout.php">ログアウト</a>
 
   <!-- <canvas id="physicalcondition">
     <script>
