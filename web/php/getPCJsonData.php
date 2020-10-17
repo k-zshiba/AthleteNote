@@ -2,11 +2,11 @@
 
 session_start();
 
+
 if(!isset($_SESSION['userID'])){
-    header("Location: loginPage.php");
+    header("Location: ../loginPage.html");
     exit;
 }
-
 require_once('./dbConfig.php');
 require_once('./htmlSpecialChars.php');
 require_once('./getFirstDayOfTheWeek.php');

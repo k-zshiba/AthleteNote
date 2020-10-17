@@ -17,7 +17,7 @@ if (empty($_POST['password']) || empty($_POST['userID'])) {
     echo $error_message;
 }else {
     if (!isset($row['userID'])) {
-        echo 'ユーザIDまたはパスワードが間違っています。<br>'.'<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+        echo 'ユーザIDまたはパスワードが間違っています。<br>'.'<button type="button" onclick="location.href=\'../loginPage.html\'">登録画面に戻る</button>';
     }else {
         $password = $_POST['password'];
         $correct_password = $row['password'];
@@ -28,7 +28,7 @@ if (empty($_POST['password']) || empty($_POST['userID'])) {
             header('Location: topPage.php');
             exit;
         }else {
-            echo 'ユーザIDまたはパスワードが間違っています。<br>','<button type="button" onclick="location.href=\'./loginPage.php\'">登録画面に戻る</button>';
+            echo 'ユーザIDまたはパスワードが間違っています。<br>','<button type="button" onclick="location.href=\'../loginPage.htnl\'">登録画面に戻る</button>';
         }
     }
 }
