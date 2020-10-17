@@ -31,8 +31,8 @@ CREATE TABLE `contents` (
   `contentID` varchar(255) NOT NULL,
   `content1` varchar(255) DEFAULT NULL,
   `content2` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp DEFAULT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -58,8 +58,8 @@ CREATE TABLE `menu` (
   `menuname` text NOT NULL,
   `quality` tinytext NOT NULL,
   `quantity` tinytext NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp DEFAULT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -76,8 +76,8 @@ CREATE TABLE `physicalconditionlog` (
   `bodyweight` float DEFAULT NULL,
   `bodytemperature` float DEFAULT NULL,
   `sleeptime` double DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp DEFAULT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89,8 +89,8 @@ CREATE TABLE `physicalconditionlog` (
 CREATE TABLE `userdata` (
   `userID` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp DEFAULT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,8 +107,8 @@ CREATE TABLE `workoutlog` (
   `menu` text NOT NULL,
   `contentID` varchar(255) NOT NULL,
   `openorclose` tinyint(1) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp DEFAULT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
