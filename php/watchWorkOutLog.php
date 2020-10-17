@@ -5,7 +5,7 @@ if(!isset($_SESSION['userID'])){
     header("Location: loginPage.php");
     exit;
 }
-
+require_once('.\htmlSpecialChars.php');
 require_once('.\dbConfig.php');
 
 
@@ -31,12 +31,8 @@ try{
   <h1><?php echo $_SESSION['userID'].'さん'; ?></h1>
   <h2>練習ログ一覧</h2>
   
-  <table border=1>
-    <tr>
-      <th>日付</th>
-      <th colspan=2>ユーザ名</th>
-      <th>強度</th>
-    </tr>
+  
+
 <?php
     foreach($row as $output){
         try{
@@ -49,22 +45,23 @@ try{
         }
 
         echo 
+        '<table border=1 style="width:50%;">'.
         '<tr>'.
-          '<td colspan=1>'.$output['date'].'</td>'.
-          '<td colspan=2>'.$_SESSION['userID'].'</td>'.
-          '<td colspan=1>'.$output['intensity'].'</td>'.
+          '<td colspan=1>'.h($output['date']).'</td>'.
+          '<td colspan=2>'.h($_SESSION['userID']).'</td>'.
+          '<td colspan=1>'.h($output['intensity']).'</td>'.
         '</tr>'.
         '<tr>'.
           '<th colspan=4>メニュー</th>'.
         '</tr>'.
         '<tr>'.
-          '<td colspan=4>'.$output['menu'].'</td>'.
+          '<td colspan=4>'.h($output['menu']).'</td>'.
         '</tr>'.
         '<tr>'.
           '<th colspan=4>感想・意識</th>'.
         '</tr>'.
         '<tr>'.
-          '<td colspan=4>'.$output['thought'].'</td>'.
+          '<td colspan=4>'.h($output['thought']).'</td>'.
         '</tr>'.
         '<tr>'.
           '<th colspan=4>写真・動画</th>'.
@@ -85,10 +82,10 @@ try{
         echo 
         '</table>'.
           '<form method="POST" action="editWorkOutLog_form.php">'.
-            '<td>'. '<button type="submit" name="edit-button"value="'.$output['contentID'].'">編集</button></td>'.
+            '<td>'. '<button type="submit" name="edit-button"value="'.h($output['contentID']).'">編集</button></td>'.
           '</form>'.
           '<form method="POST" action="deletePhysicalConditionLog.php">'.
-            '<td>'. '<button type="submit" name="delete-button"value="'.$output['contentID'].'">削除</button></td>'.
+            '<td>'. '<button type="submit" name="delete-button"value="'.h($output['contentID']).'">削除</button></td>'.
           '</form>';
     }
 ?>
