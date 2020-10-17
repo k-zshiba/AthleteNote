@@ -6,6 +6,7 @@ if (!isset($_SESSION['userID'])) {
     exit;
 }
 
+require_once('.\htmlSpecialChars.php');
 require_once('.\dbConfig.php');
 
 
@@ -54,16 +55,16 @@ try {
     foreach($row as $output){
         echo 
           '<tr>'.
-            '<td>'. $output['date'].'</td>'.
-            '<td>'. $output['fatigue'].'</td>'.
-            '<td>'. $output['bodyweight'].'</td>'.
-            '<td>'. $output['bodytemperature'].'</td>'.
-            '<td>'. $output['sleeptime'].'</td>'.
+            '<td>'. h($output['date']).'</td>'.
+            '<td>'. h($output['fatigue']).'</td>'.
+            '<td>'. h($output['bodyweight']).'</td>'.
+            '<td>'. h($output['bodytemperature']).'</td>'.
+            '<td>'. h($output['sleeptime']).'</td>'.
             '<form method="POST" action="editPhysicalConditionLog_form.php">'.
-              '<td>'. '<button type="submit" name="edit-button"value="'.$output['physicalconditionlogID'].'">編集</button></td>'.
+              '<td>'. '<button type="submit" name="edit-button"value="'.h($output['physicalconditionlogID']).'">編集</button></td>'.
             '</form>'.
             '<form method="POST" action="deletePhysicalConditionLog.php" onSubmit = "return deleteIsConfirmed()">'.
-              '<td>'. '<button type="submit" name="delete-button"value="'.$output['physicalconditionlogID'].'">削除</button></td>'.
+              '<td>'. '<button type="submit" name="delete-button"value="'.h($output['physicalconditionlogID']).'">削除</button></td>'.
             '</form>'.
           '</tr>';
     }
