@@ -31,10 +31,11 @@ try {
 
 <body>
   <h2>トップ画面</h2>
-  <a href="registerLogPage\registerWorkOutLog.php">練習登録画面へ</a>
-  <a href="registerLogPage\registerPhysicalConditionLog.php">体調登録画面へ</a>
+  <a href=".\registerWorkOutLog.php">練習登録画面へ</a>
+  <a href=".\registerPhysicalConditionLog.php">体調登録画面へ</a>
   <a href=".\watchPCLog.php">体調ログ一覧へ</a>
   <a href=".\watchWorkOutLog.php">練習ログ一覧へ</a>
+  <a href=".\watchWorkOutLogForOthers.php">他の人のログを見る</a>
   <a href=".\logout.php">ログアウト</a>
 
   <!-- <canvas id="physicalcondition">
