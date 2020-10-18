@@ -27,7 +27,7 @@
             <input type="password" name ="passwordCheck" id="InputPasswordCheck">
             <small id="passwordCheckHelp">もう一度パスワードを入力してください</small><br>
 
-            <button type="submit" id = "./signUp">登録</button>
+            <button type="submit" id = "signUp">登録</button>
         </form>
 
   <h2>既に登録済みの方はこちら</h2>
