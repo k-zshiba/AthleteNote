@@ -5,8 +5,8 @@ if(!isset($_SESSION['userID'])){
     header("Location: ./loginPage.php");
     exit;
 }
-require_once('.\htmlSpecialChars.php');
-require_once('.\dbConfig.php');
+require_once('./htmlSpecialChars.php');
+require_once('./dbConfig.php');
 
 
 try{
@@ -89,6 +89,6 @@ try{
           '</form>';
     }
 ?>
-<button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+<button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>
