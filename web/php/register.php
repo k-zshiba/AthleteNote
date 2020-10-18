@@ -1,5 +1,5 @@
 <?php
-require_once('dbConfig.php');
+require_once('./dbConfig.php');
 
 session_start();
 
@@ -44,7 +44,7 @@ if (empty($_POST['password']) || empty($_POST['passwordCheck'])) {
                     $_SESSION['userID'] = $user_id;
                     $stmt = null;
                     $pdo = null;
-                    header('Location: topPage.php');
+                    header('Location: ./topPage.php');
                 }catch (\Exception $e) {
                     exit($e->getMessage());
                 }

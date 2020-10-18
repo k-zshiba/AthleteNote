@@ -1,19 +1,19 @@
 <?php
 session_start();
 
-require_once('.\dbConfig.php');
+require_once('./dbConfig.php');
 
 if(!isset($_SESSION['userID'])){
-    header("Location: .\loginPage.php");
+    header("Location: ./loginPage.php");
     exit;
 }
 
 // create user folder
 $user_id = $_SESSION['userID'];
 $error_message = "";
-$contents_folder = "..\ContentsFolder";
-$user_contents_folder = $contents_folder.'\\'.'user_'.$user_id;
-if (empty(glob($contents_folder.'\*'.$user_id))) {
+$contents_folder = "../ContentsFolder";
+$user_contents_folder = $contents_folder.'/'.'user_'.$user_id;
+if (empty(glob($contents_folder.'/*'.$user_id))) {
     mkdir($user_contents_folder, 0777, true);
 }
 
@@ -35,13 +35,13 @@ if(empty($_POST['date'])){
         // workoutlog テーブルに登録する
         $stmt = $pdo->prepare("INSERT INTO workoutlog(userID, date, intensity, thought, menu, contentID,openorclose) value(?,?,?,?,?,?,?)");
         $stmt->execute([$_SESSION['userID'], $date,$intensity,$thought,$menu,$contentID,$open_or_close]);
-        $user_content_folder_in_date = $user_contents_folder.'\\'.$date;
-        if (empty(glob($user_contents_folder.'\*'.$date))) {
+        $user_content_folder_in_date = $user_contents_folder.'/'.$date;
+        if (empty(glob($user_contents_folder.'/*'.$date))) {
           mkdir($user_content_folder_in_date, 0777, true);
         }
         if (isset($_FILES['content1'])) {
             $content1_extension = pathinfo(basename($_FILES['content1']['name']),PATHINFO_EXTENSION);
-            $content1 = $user_content_folder_in_date.'\\'.'content1.'.$content1_extension;
+            $content1 = $user_content_folder_in_date.'/'.'content1.'.$content1_extension;
             if (move_uploaded_file($_FILES['content1']['tmp_name'],$content1)) {
               $content1_is_uploaded = true;
             }else {
@@ -52,7 +52,7 @@ if(empty($_POST['date'])){
         }
         if (isset($_FILES['content2'])) {
             $content2_extension = pathinfo(basename($_FILES['content2']['name']),PATHINFO_EXTENSION);
-            $content2 = $user_content_folder_in_date.'\\'.'content2.'.$content2_extension;
+            $content2 = $user_content_folder_in_date.'/'.'content2.'.$content2_extension;
             if (move_uploaded_file($_FILES['content2']['tmp_name'],$content2)) {
                 $content2_is_uploaded = true;
             }else {
@@ -67,7 +67,7 @@ if(empty($_POST['date'])){
         if ($content1_is_uploaded||$content2_is_uploaded) {
             $stmt = null;
             $pdo = null;
-            header('Location: successRegister.php');
+            header('Location: ./successRegister.php');
             exit;
         }else {
             echo 'アップロードに失敗しました。';
@@ -111,6 +111,6 @@ if(empty($_POST['date'])){
     <input type="radio" name="open-or-close" id="close-log" value="0" required><label for="close-log">非公開</label><br>
     <button type="submit">登録する</button>
   </form>
-  <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+  <button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>
