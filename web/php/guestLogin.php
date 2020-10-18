@@ -1,6 +1,6 @@
 <?php
 
-require_once('dbConfig.php');
+require_once('./dbConfig.php');
 
 session_start();
 
@@ -28,7 +28,7 @@ try {
   $_SESSION['userID'] = $guestuser;
   $stmt = null;
   $pdo = null;
-  header('Location: topPage.php');
+  header('Location: ./topPage.php');
 } catch (PDOException $e){
   exit($e->getMessage());
 }

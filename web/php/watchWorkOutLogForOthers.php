@@ -5,8 +5,8 @@ if(!isset($_SESSION['userID'])){
     header("Location: ./loginPage.php");
     exit;
 }
-require_once('.\htmlSpecialChars.php');
-require_once('.\dbConfig.php');
+require_once('./htmlSpecialChars.php');
+require_once('./dbConfig.php');
 
 
 try{
@@ -77,14 +77,14 @@ try{
         }
         echo 
         '</table>'.
-          '<form method="POST" action="editWorkOutLog_form.php">'.
+          '<form method="POST" action="./editWorkOutLog_form.php">'.
             '<td>'. '<button type="submit" name="edit-button"value="'.h($output['contentID']).'">編集</button></td>'.
           '</form>'.
-          '<form method="POST" action="deletePhysicalConditionLog.php">'.
+          '<form method="POST" action="./deletePhysicalConditionLog.php">'.
             '<td>'. '<button type="submit" name="delete-button"value="'.h($output['contentID']).'">削除</button></td>'.
           '</form>';
     }
 ?>
-<button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+<button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>

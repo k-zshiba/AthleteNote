@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userID'])) {
-    header("Location: .\\topPage.php");
+    header("Location: ./topPage.php");
     exit;
 }
 
@@ -40,6 +40,6 @@ try{
 
 <body>
 
-  <button type="button" onclick="location.href='.\\watchPCLog.php'">一覧に戻る</button>
+  <button type="button" onclick="location.href='./watchPCLog.php'">一覧に戻る</button>
 </body>
 </html>

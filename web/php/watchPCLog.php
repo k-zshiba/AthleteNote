@@ -6,8 +6,8 @@ if (!isset($_SESSION['userID'])) {
     exit;
 }
 
-require_once('.\htmlSpecialChars.php');
-require_once('.\dbConfig.php');
+require_once('./htmlSpecialChars.php');
+require_once('./dbConfig.php');
 
 
 try {
@@ -71,6 +71,6 @@ try {
     ?>
     </tbody>
   </table>
-  <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+  <button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>

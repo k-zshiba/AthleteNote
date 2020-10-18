@@ -5,7 +5,7 @@ if (!isset($_SESSION['userID'])) {
     header("Location: ./loginPage.php");
     exit;
 }
-require_once('.\dbConfig.php');
+require_once('./dbConfig.php');
 
 $error_message = "";
 
@@ -32,7 +32,7 @@ if (empty($_POST['date'])) {
       $stmt->execute([$_SESSION['userID'], $date,$fatigue,$bodyweight,$bodytemperature,$sleeptime]);
       $result = $stmt->rowCount();
       if ($result) {
-          header('Location: successRegister.php');
+          header('Location: ./successRegister.php');
           exit;
       }else {
           echo '登録に失敗しました。';
@@ -75,7 +75,7 @@ if (empty($_POST['date'])) {
     <input type="number" value = "6" name = "sleeptime" step = "0.5">時間<br> 
     <input type="submit" value = "登録する">
   </form>
-  <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+  <button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 
 </body>
 </html>

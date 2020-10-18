@@ -1,5 +1,5 @@
 <?php
-require_once('dbConfig.php');
+require_once('./dbConfig.php');
 session_start();
 
 // データベースにユーザIDが存在しているか確認

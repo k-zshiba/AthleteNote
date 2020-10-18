@@ -6,7 +6,7 @@ if(!isset($_SESSION['userID'])){
     exit;
 }
 
-require_once('.\dbConfig.php');
+require_once('./dbConfig.php');
 $physical_condition_log_id = $_POST['edit-button'];
 try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
@@ -53,6 +53,6 @@ try {
     "<button type='submit' name ='physicalconditionlogID' value='$physical_condition_log_id'>保存する</button>";
     ?>
   </form>
-  <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+  <button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>

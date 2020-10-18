@@ -6,7 +6,7 @@ if(!isset($_SESSION['userID'])){
     exit;
 }
 
-require_once('.\dbConfig.php');
+require_once('./dbConfig.php');
 $content_id = $_POST['edit-button'];
 try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
@@ -72,6 +72,6 @@ try {
     <label for="close-log">非公開</label><br>
     <button type='submit' name ='contentID' value='<?php echo $content_id?>'>保存する</button>
   </form>
-  <button type="button" onclick="location.href = '.\\topPage.php'">トップに戻る</button>
+  <button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>
