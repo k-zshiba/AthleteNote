@@ -5,4 +5,4 @@ $_SESSION = array();
 
 @session_destroy;
 
-header("Location: ../loginPage.html");
+header("Location: ./loginPage.php");

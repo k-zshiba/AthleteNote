@@ -5,7 +5,7 @@ require_once('./dbConfig.php');
 if(isset($_SESSION['userID'])){
     echo '<h2>ようこそ'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
 }else{
-    header("Location: ../loginPage.html");
+    header("Location: ./loginPage.php");
     exit;
 }
 

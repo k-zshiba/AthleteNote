@@ -4,7 +4,7 @@ session_start();
 require_once('.\dbConfig.php');
 
 if(!isset($_SESSION['userID'])){
-    header("Location: ..\loginPage.html");
+    header("Location: .\loginPage.php");
     exit;
 }
 
