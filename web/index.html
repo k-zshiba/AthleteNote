@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <!-- Bootstrap Javascript -->
@@ -12,19 +14,32 @@
   <title>Athlete Note</title>
 </head>
 <body>
-  <header class="navbar navbar-expand">
-  <a href="./index.html">
-  <h1>Athlete Note<h1>
-  </a>
-  </header>
-  <div class="description col-md-6 col-sm-12">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-primary" href="./index.html">Athlete Note</a>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-sliders-h"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="./php/loginPage.php">ログイン</a>
+          <a class="dropdown-item" href="./php/signUpPage.php">サインアップ</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div class="text-center col-md-12 col-sm-12">
     <p>Athlete Noteは</p>
     <p>日々の練習や体調を記録し</p>
-    <p>可視化することであなたの競技力向上のための</p>
+    <p>可視化することで</p>
+    <p>あなたの競技力向上のための</p>
     <p>手段の一つとしてお使いいただけます。</p>
+    <a class="btn btn-success" href="./php/signUpPage.php">会員登録する</a>
   </div>
-  
-<a class="btn btn-success" href="./php/signUpPage.php">会員登録する</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdownMenuLink" aria-controls="navbarDropdownMenuLink" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 </body>
 </html>
 
