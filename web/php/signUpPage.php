@@ -48,12 +48,16 @@
       </div>
       <button type="submit" class="btn btn-success">登録</button>
     </form>
+  </div>
+  <div class="mt-4 mx-auto col-md-6 col-sm-12">
     <h2>登録せずに使う</h2>
     <form name="guestLogin" action="./guestLogin.php">
       <button type="submit" class="btn btn-primary">ゲストログイン</button>
     </form>
   </div>
-
+  <div class="mt-3 mx-auto col-md-6 col-sm-12">
+    アカウントを既にお持ちですか？  <a href="./loginPage.php">ログイン</a>
+  </div>
 
 
 </body>
