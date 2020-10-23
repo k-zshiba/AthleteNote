@@ -45,6 +45,9 @@
       <button type="submit" class="btn btn-primary">ログイン</button>
     </form>
   </div>
+  <div class="mx-auto col-md-6 col-sm-12">
+    アカウントをお持ちでない方  <a href="./signUpPage.php">会員登録</a>
+  </div>
 
 </body>
 </html>
