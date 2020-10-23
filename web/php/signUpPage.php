@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-  <h2>初めての方はこちら</h2>
+  <h2>登録はこちら</h2>
         <form name="register" action="./register.php" method="POST">
 
 
@@ -28,6 +28,10 @@
             <small id="passwordCheckHelp">もう一度パスワードを入力してください</small><br>
 
             <button type="submit" id = "signUp">登録</button>
+        </form>
+        <h2>登録せずに使う</h2>
+        <form name="guestLogin" action="./guestLogin.php">
+          <button type="submit">ゲストログイン</button>
         </form>
 </body>
 </html>
