@@ -29,7 +29,7 @@ if (isset($_POST['register-btn'])) {
           echo '登録に失敗しました。';
       }
   }catch (PDOException $e) {
-      exit('データベース接続失敗。'.$e->getMessage());
+      exit($e->getMessage());
   }
 }
 ?>
