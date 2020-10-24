@@ -1,14 +1,9 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "5f5952a7698df75f4ad35c810b85f9f2",
     "packages": [
         {
             "name": "abraham/twitteroauth",
             "version": "1.2.0",
+            "version_normalized": "1.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abraham/twitteroauth.git",
@@ -32,7 +27,9 @@
                 "phpunit/phpunit": "^8",
                 "squizlabs/php_codesniffer": "^3"
             },
+            "time": "2020-09-22T14:27:00+00:00",
             "type": "library",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Abraham\\TwitterOAuth\\": "src"
@@ -65,11 +62,12 @@
                 "issues": "https://github.com/abraham/twitteroauth/issues",
                 "source": "https://github.com/abraham/twitteroauth"
             },
-            "time": "2020-09-22T14:27:00+00:00"
+            "install-path": "../abraham/twitteroauth"
         },
         {
             "name": "composer/ca-bundle",
             "version": "1.2.8",
+            "version_normalized": "1.2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
@@ -91,12 +89,14 @@
                 "psr/log": "^1.0",
                 "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0"
             },
+            "time": "2020-08-23T12:54:47+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.x-dev"
                 }
             },
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Composer\\CaBundle\\": "src"
@@ -140,19 +140,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-23T12:54:47+00:00"
+            "install-path": "./ca-bundle"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": {
-        "php": "^7.4.9",
-        "ext-mbstring": "*"
-    },
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "dev": true
 }
