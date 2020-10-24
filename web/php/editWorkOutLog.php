@@ -21,11 +21,7 @@ try{
     $workout_log = array(':intensity'=>$intensity, ':date'=>$date,':thought'=>$thought,':menu'=>$menu,':openorclose'=>$open_or_close, ':contentID'=>$content_id,':userID'=>$userID);
     $stmt->execute($workout_log);
     $result = $stmt->rowCount();
-    if ($result) {
-        echo "編集に成功しました。<br>";
-    }else {
-        echo "編集に失敗しました。<br>";
-    }
+    echo "編集に成功しました。<br>";
 }catch (PDOExeption $e) {
     echo $e->getMessage();
 }
