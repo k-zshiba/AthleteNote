@@ -18,7 +18,8 @@ if (empty(glob($contents_folder.'/*'.$user_id))) {
 }
 
 if (isset($_POST['register-btn'])) {
-  $date = $_POST['date'];
+  $date_create_from_format = date_create_from_format('m/d/Y', $_POST['date']);
+  $date = date_format($date_create_from_format,'Y-m-d');
   $intensity = $_POST['intensity'];
   $thought = $_POST['thought'];
   $menu = $_POST['menu'];
@@ -77,6 +78,12 @@ if (isset($_POST['register-btn'])) {
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!--Moment.js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+  <!-- Tempus Dominus -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 <body>
   <header class="navbar navbar-expand-lg navbar-light bg-light">
@@ -96,8 +103,23 @@ if (isset($_POST['register-btn'])) {
   <div class="mx-auto col-md-6 col-sm-12">
   <h3>練習登録フォーム</h3>
     <form action="" method = "POST" enctype="multipart/form-data">
-      日付<span class="text-danger"> 必須</span><br>
-      <input type="date" name = "date" required><br>
+      <div class="form-group">
+        <label for="date"> 日付<span class="text-danger"> 必須</span></label>
+          <div class="form-group">
+            <div class="input-group date" id="date" data-target-input="nearest">
+              <input name = "date" type="text" class="form-control datetimepicker-input" data-target="#date" data-toggle="datetimepicker" required/>
+              <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#date').datetimepicker({
+                    format: 'L'
+                });
+            });
+        </script>
+      </div>
       <div class="form-group">
         <label class="my-1 mr-2" for="intensity">練習の強度</label>
         <select name="intensity" class="custom-select my-1 mr-sm-2" id="intensity">
@@ -113,14 +135,21 @@ if (isset($_POST['register-btn'])) {
         <label for="thought">ここに感想・意識を記入してください。</label>
         <textarea name="thought" class="form-control" id="thought" rows="3"></textarea>
       </div>
-      画像・動画(計二つまで)<br>
-      <input type="file" name = "content1"><br>
-      <input type="file" name = "content2"><br>
+      画像 (計二つまで)<br>
+      <div class="form-group">
+        <div class="custom-file">
+          <input type="file" name = "content1" class="custom-file-input" id="content1">
+          <label class="custom-file-label" for="content1">1つ目のファイル</label>
+        </div>
+        <div class="custom-file">
+          <input type="file" name = "content2" class="custom-file-input" id="content2">
+          <label class="custom-file-label" for="content2">2つ目のファイル</label>
+        </div>
+      </div>
       <div class="form-group">
         <label for="menu">ここに練習メニューを記入してください。</label>
         <textarea name="menu" class="form-control" id="menu" rows="3"></textarea>
       </div>
-      <span class="text-danger">必須</span>
       <div class="form-check form-check-inline">
       <input class="form-check-input" name="open-or-close" type="radio" id="open-log" value="1"required>
       <label class="form-check-label" for="open-log">公開する</label>
@@ -129,6 +158,7 @@ if (isset($_POST['register-btn'])) {
       <input class="form-check-input" name="open-or-close" type="radio" id="close-log" value="0" required>
       <label class="form-check-label" for="close-log">非公開</label>
       </div>
+      <span class="text-danger">必須</span>
       <div class="float-right">
         <button  name="register-btn" class="btn btn-success" type="submit">登録する</button>
         <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
