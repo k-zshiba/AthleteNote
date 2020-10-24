@@ -1,0 +1,12 @@
+<?php
+// $url = getenv('JAWSDB_URL');
+// $db = parse_url($url);
+// $db['dbName'] = ltrim($db['path'],'/');
+
+// define('DSN',"mysql:host={$db['host']};dbname={$db['dbName']};charset=utf8");
+// define('DB_USER',$db['user']);
+// define('DB_PASS',$db['pass']);
+
+define('DSN','mysql:host=localhost;dbname=athletenote');
+define('DB_USER','root');
+define('DB_PASS','TfxkC1YNa3bjwbWL');
