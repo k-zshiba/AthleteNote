@@ -115,6 +115,5 @@ try{
           '</form>';
     }
 ?>
-<button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
-</body>
+  <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button></body>
 </html>
