@@ -10,7 +10,6 @@ if(!isset($_SESSION['userID'])){
 
 // create user folder
 $user_id = $_SESSION['userID'];
-$error_message = "";
 $contents_folder = "../ContentsFolder";
 $user_contents_folder = $contents_folder.'/'.'user_'.$user_id;
 if (empty(glob($contents_folder.'/*'.$user_id))) {
@@ -55,8 +54,8 @@ if (isset($_POST['register-btn'])) {
       $result = $stmt->execute([$contentID,$content1,$content2]);
       $stmt = null;
       $pdo = null;
-      // header('Location: ./successRegister.php');
-      // exit;
+      header('Location: ./successRegister.php');
+      exit;
   }catch (PDOException $e) {
       exit($e->getMessage());
   }
