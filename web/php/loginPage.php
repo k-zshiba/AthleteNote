@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(isset($_SESSION['userID'])){
+    header("Location: ./topPage.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lamg="ja">
 <head>
