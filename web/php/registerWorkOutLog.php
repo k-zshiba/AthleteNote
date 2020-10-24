@@ -22,7 +22,7 @@ if (isset($_POST['register-btn'])) {
   $intensity = $_POST['intensity'];
   $thought = $_POST['thought'];
   $menu = $_POST['menu'];
-  $contentID = $user_id.$date;    
+  $contentID = $user_id.$date; 
   $open_or_close = $_POST['open-or-close'];
 
   // 練習ログ登録
@@ -31,8 +31,8 @@ if (isset($_POST['register-btn'])) {
       // workoutlog テーブルに登録する
       $stmt = $pdo->prepare("INSERT INTO workoutlog(userID, date, intensity, thought, menu, contentID,openorclose) value(?,?,?,?,?,?,?)");
       $stmt->execute([$_SESSION['userID'], $date,$intensity,$thought,$menu,$contentID,$open_or_close]);
-      $user_content_folder_in_date = $user_contents_folder.'/'.$date;
-      if (empty(glob($user_contents_folder.'/*'.$date))) {
+      $user_content_folder_in_date = $user_contents_folder.'/'.$contentID;
+      if (empty(glob($user_contents_folder.'/*'.$contentID))) {
         mkdir($user_content_folder_in_date, 0777, true);
       }
       if (isset($_FILES['content1'])) {
