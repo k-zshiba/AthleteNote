@@ -18,7 +18,7 @@ if (empty(glob($contents_folder.'/*'.$user_id))) {
 }
 
 if (isset($_POST['register-btn'])) {
-  $date_create_from_format = date_create_from_format('m/d/Y', $_POST['date']);
+  $date_create_from_format = date_create_from_format('Y-m-d', $_POST['date']);
   $date = date_format($date_create_from_format,'Y-m-d');
   $intensity = $_POST['intensity'];
   $thought = $_POST['thought'];
@@ -115,7 +115,7 @@ if (isset($_POST['register-btn'])) {
         <script type="text/javascript">
             $(function () {
                 $('#date').datetimepicker({
-                    format: 'L'
+                    format: 'YYYY-MM-DD'
                 });
             });
         </script>
