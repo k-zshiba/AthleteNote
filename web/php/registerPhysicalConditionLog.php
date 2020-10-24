@@ -5,7 +5,7 @@ if (!isset($_SESSION['userID'])) {
     header("Location: ./loginPage.php");
     exit;
 }
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 $error_message = "";
 
@@ -22,7 +22,7 @@ if (empty($_POST['date'])) {
 
   // data base接続
   try {
-      $pdo = new PDO(DSN, DB_USER, DB_PASS);
+      $pdo = connectDB();
   }catch (PDOException $e) {
       exit('データベース接続失敗。'.$e->getMessage());
   }

@@ -6,10 +6,10 @@ if(!isset($_SESSION['userID'])){
     exit;
 }
 
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 $physical_condition_log_id = $_POST['edit-button'];
 try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $stmt = $pdo->prepare("SELECT * FROM physicalconditionlog WHERE physicalconditionlogID = ? AND userID = ?");
     $stmt->execute([$physical_condition_log_id, $_SESSION['userID']]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);

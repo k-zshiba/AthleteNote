@@ -6,11 +6,11 @@ if(!isset($_SESSION['userID'])){
     exit;
 }
 require_once('./htmlSpecialChars.php');
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 
 try{
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $stmt = $pdo->prepare("SELECT * FROM workoutlog WHERE  openorclose= ? ORDER BY date ASC");
     $stmt->execute([1]);
     $row = $stmt->fetchAll(PDO::FETCH_ASSOC);

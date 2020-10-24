@@ -5,7 +5,7 @@ if (!isset($_SESSION['userID'])) {
     exit;
 }
 
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 $userID = $_SESSION['userID'];
 $intensity = $_POST['intensity'];
@@ -15,7 +15,7 @@ $menu = $_POST['menu'];
 $content_id = $_POST['contentID'];
 $open_or_close = $_POST['open-or-close'];
 try{
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $sql = "UPDATE workoutlog SET intensity=:intensity,date=:date,thought=:thought, menu=:menu, openorclose=:openorclose WHERE contentID = :contentID AND userID = :userID";
     $stmt = $pdo->prepare($sql);
     $workout_log = array(':intensity'=>$intensity, ':date'=>$date,':thought'=>$thought,':menu'=>$menu,':openorclose'=>$open_or_close, ':contentID'=>$content_id,':userID'=>$userID);

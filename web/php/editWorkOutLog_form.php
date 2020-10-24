@@ -6,10 +6,10 @@ if(!isset($_SESSION['userID'])){
     exit;
 }
 
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 $content_id = $_POST['edit-button'];
 try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $stmt = $pdo->prepare("SELECT * FROM workoutlog WHERE contentID = ? AND userID = ?");
     $stmt->execute([$content_id, $_SESSION['userID']]);
     $workout_log = $stmt->fetch(PDO::FETCH_ASSOC);

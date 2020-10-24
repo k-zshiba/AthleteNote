@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 if(!isset($_SESSION['userID'])){
     header("Location: ./loginPage.php");
@@ -8,7 +8,7 @@ if(!isset($_SESSION['userID'])){
 }
 
 try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $stmt = $pdo->prepare("SELECT * FROM physicalconditionlog WHERE userID = ?");
     $stmt->execute([$_SESSION['userID']]);
     $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
