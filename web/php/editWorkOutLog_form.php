@@ -66,10 +66,10 @@ try {
     <h2>練習編集</h2>
     <form action="editWorkOutLog.php" method = "POST" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="date"> 日付<span class="text-danger"> 必須</span></label>
+        <label for="date"> 日付<span class="text-danger"> 編集不可</span></label>
           <div class="form-group">
             <div class="input-group date" id="date" data-target-input="nearest">
-              <input name = "date" type="text" class="form-control datetimepicker-input" data-target="#date" data-toggle="datetimepicker" placeholder="<?php echo h($workout_log['date']);?>" required/>
+              <input name = "date" type="text" class="form-control datetimepicker-input" data-target="#date" data-toggle="datetimepicker" placeholder="<?php echo h($workout_log['date']);?>" value="<?php echo h($workout_log['date']);?>" required readonly/>
               <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
@@ -86,11 +86,11 @@ try {
         <label class="my-1 mr-2" for="intensity">練習の強度</label>
         <select name="intensity" class="custom-select my-1 mr-sm-2" id="intensity" placeholder="<?php echo h($workout_log['intensity']);?>">
           <option <?php if ($workout_log['intensity'] === '0'){echo "selected";}?>>強度</option>
-          <option value=1 <?php if ($workout_log['intensity'] === '1'){echo "selected";}?>>1</option>
-          <option value=2 <?php if ($workout_log['intensity'] === '2'){echo "selected";}?>>2</option>
-          <option value=3 <?php if ($workout_log['intensity'] === '3'){echo "selected";}?>>3</option>
-          <option value=4 <?php if ($workout_log['intensity'] === '4'){echo "selected";}?>>4</option>
-          <option value=5 <?php if ($workout_log['intensity'] === '5'){echo "selected";}?>>5</option>
+          <option value=1 <?php if ($workout_log['intensity'] === 1){echo "selected";}?>>1</option>
+          <option value=2 <?php if ($workout_log['intensity'] === 2){echo "selected";}?>>2</option>
+          <option value=3 <?php if ($workout_log['intensity'] === 3){echo "selected";}?>>3</option>
+          <option value=4 <?php if ($workout_log['intensity'] === 4){echo "selected";}?>>4</option>
+          <option value=5 <?php if ($workout_log['intensity'] === 5){echo "selected";}?>>5</option>
         </select>
       </div>
       <div class="form-group">
@@ -137,6 +137,7 @@ try {
         <button  name="register-btn" class="btn btn-success" type="submit">登録する</button>
         <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
       </div>
+      <input name="contentID" type="text" value="<?php echo $content['contentID']?>" hidden>
     </form>
   </div>  
 </body>
