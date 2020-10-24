@@ -10,7 +10,7 @@ require_once('./connectDB.php');
 $error_message = "";
 
 if (isset($_POST['register-btn'])) {
-    $date_create_from_format = date_create_from_format('m/d/Y', $_POST['date']);
+    $date_create_from_format = date_create_from_format('Y-m-d', $_POST['date']);
     $date = date_format($date_create_from_format,'Y-m-d');
     $fatigue = $_POST['fatigue'];
     $bodyweight = $_POST['bodyweight'];
