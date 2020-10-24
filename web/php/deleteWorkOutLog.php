@@ -6,8 +6,12 @@ if(!isset($_SESSION['userID'])){
     exit;
 }
 
-require_once('./connectDB.php');
+$user_id = $_SESSION['userID'];
 $contentID = $_POST['delete-button'];
+$contents_folder = "../ContentsFolder";
+$user_contents_folder = $contents_folder.'/'.'user_'.$user_id;
+$user_content_folder_in_date = $user_contents_folder.'/'.$contentID;
+require_once('./connectDB.php');
 try {
     $pdo = connectDB();
     $stmt = $pdo->prepare("DELETE FROM workoutlog WHERE contentID = ?");
@@ -16,10 +20,11 @@ try {
     $stmt = $pdo->prepare("DELETE FROM contents WHERE contentID = ?");
     $stmt->execute([$contentID]);
     $result_for_delete_contents = $stmt->rowCount();   
+    array_map('unlink', glob($user_content_folder_in_date.'/*'));
     if ($result_for_delete_workout_log && $result_for_delete_contents) {
-        echo '削除に成功しました。<br>'.'<button type="button" onclick="location.href = \'./watchPCLog.php\'">体調ログ一覧に戻る</button>';
+        echo '削除に成功しました。<br>'.'<button type="button" onclick="location.href = \'./watchWorkOutLog.php\'">練習記録一覧に戻る</button>';
     }else {
-        echo '削除に失敗しました。<br>'.'<button type="button" onclick="location.href = \'./watchPCLog.php\'">体調ログ一覧に戻る</button>';
+        echo '削除に失敗しました。<br>'.'<button type="button" onclick="location.href = \'./watchWorkOutLog.php\'">練習記録一覧に戻る</button>';
     }
 }catch (PDOExeption $e) {
     exit($e->getMessage());
