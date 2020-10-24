@@ -87,7 +87,7 @@ if (isset($_POST['register-btn'])) {
           <script type="text/javascript">
               $(function () {
                   $('#date').datetimepicker({
-                    format: 'L'
+                    format: 'YYYY-MM-DD'
                   });
               });
           </script>
