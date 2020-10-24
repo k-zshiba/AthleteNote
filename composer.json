@@ -1,8 +1,8 @@
 {
 	"require": {
 	"php": "^7.4.9",
-	"ext-mbstring": "*"
+	"ext-mbstring": "*",
+		"abraham/twitteroauth": "^1.2"
 	}
 
 }
-
