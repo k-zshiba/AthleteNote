@@ -34,8 +34,10 @@ try {
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <!-- My script -->
-  <script> src="../javascript/getPCList.js"</script>
+  <script src="../javascript/getPCList.js"></script>
 </head>
 
 <body>
@@ -52,10 +54,11 @@ try {
         </div>
       </li>
     </ul>
+    <?php
+        echo '<h2 class="mt-3">'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
+    ?>
   </nav>
-  <?php
-  echo '<h2 class="mt-3">ようこそ'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
-  ?>
+
   <div class="mt-4 row mx-auto">
     <div class="col-md-2 col-sm-4">
       <a class="btn btn-info" href="./registerWorkOutLog.php">練習登録画面へ</a>
@@ -75,64 +78,23 @@ try {
       <a class="btn btn-danger" href="./logout.php">ログアウト</a>
     </div> 
   </div>
-
-  
-  
-  
-
-  <!-- <canvas id="physicalcondition">
-    <script>
-      const canvas = document.getElementById('stage');
-      let physical_condition_data = <?php echo  htmlspecialchars($encoded_json_data, ENT_QUOTES, 'utf-8');?>;
-      const chart = new Chart(canvas, {
-      type: 'line',  //グラフの種類
-      data: physicalcondition,  //表示するデータ
-      options: options  //オプション設定
-      });
-    </script>
-  
-  </canvas> -->
-  <div class="PC-chart-container" style="position: relative; height:80vh; width:80vw">
-    <canvas id="myChart"></canvas>
+  <div class="PC-chart-container col-12 d-inline-block" style="height: 600px;">
+    <canvas id="PC-Chart"></canvas>
   </div>
-  
-<script>
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [1,2,3,4,5,6],
-        datasets: [{
-            label: 'test',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1,
-            lineTension: 0,
-        }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        yAxes: [{
-          stacked: true,
-          gridLines: {
-            display: true,
-            color: "rgba(255,99,132,0.2)"
-          }
-        }],
-        xAxes: [{
-          gridLines: {
-          display: true
-          }
-        }]
+  <div class="row justify-content-center">
+    <div class="col-1">
+      <i id="minus-one" class="fas fa-caret-square-left fa-5x"></i>
+      <div>
+        <p>前の月へ</p>
+      </div>
+    </div>
+    <div class="col-1">
+      <i id="plus-one" class="fas fa-caret-square-right fa-5x"></i>
+      <div>
+        <p>次の月へ</p>
+      </div>
+    </div>  
+  </div>
 
-    }}
-});
-</script>
 </body>
 </html>
