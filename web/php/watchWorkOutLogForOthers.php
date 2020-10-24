@@ -57,56 +57,56 @@ try{
     </ul>
   </header>
   <h2>練習ログ一覧</h2>
-<?php
-    foreach($row as $output){
-        try{
-            $pdo = new PDO(DSN, DB_USER, DB_PASS);
-            $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
-            $stmt->execute([$output['contentID']]);
-            $content = $stmt->fetch(PDO::FETCH_ASSOC);
-        }catch (\Exception $e){
-            exit($e->getMessage());
-        }
+  <?php
+      foreach($row as $output){
+          try{
+              $pdo = connectDB();
+              $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
+              $stmt->execute([$output['contentID']]);
+              $content = $stmt->fetch(PDO::FETCH_ASSOC);
+          }catch (\Exception $e){
+              exit($e->getMessage());
+          }
 
-        echo 
-        '<table border=1 style="width:50%;">'.
-        '<tr>'.
-          '<td colspan=1>'.h($output['date']).'</td>'.
-          '<td colspan=2>'.h($_SESSION['userID']).'</td>'.
-          '<td colspan=1>'.h($output['intensity']).'</td>'.
-        '</tr>'.
-        '<tr>'.
-          '<th colspan=4>メニュー</th>'.
-        '</tr>'.
-        '<tr>'.
-          '<td colspan=4>'.h($output['menu']).'</td>'.
-        '</tr>'.
-        '<tr>'.
-          '<th colspan=4>感想・意識</th>'.
-        '</tr>'.
-        '<tr>'.
-          '<td colspan=4>'.h($output['thought']).'</td>'.
-        '</tr>'.
-        '<tr>'.
-          '<th colspan=4>写真・動画</th>'.
-        '</tr>'.
-        '<tr>';
-        if (isset($content['content1'])) {
-          echo '<td colspan=2>'. '<img src="'.$content['content1'].'" style="width:100%;">'.'</td>';
-        }else {
-            echo '<td colspan=2></td>';
-        }
-        if (isset($content['content2'])) {
-            echo '<td colspan=2>'. '<img src="'.$content['content2'].'" style="width:100%;">'.'</td>
-            </tr>';
-        }else {
-            echo '<td colspan=2></td>
-            </tr>';
-        }
-        echo 
-        '</table>';
-    }
-?>
-<button type="button" onclick="location.href = './topPage.php'">トップに戻る</button>
+          echo 
+          '<table border=1 style="width:50%;">'.
+          '<tr>'.
+            '<td colspan=1>'.h($output['date']).'</td>'.
+            '<td colspan=2>'.h($output['userID']).'</td>'.
+            '<td colspan=1>'.h($output['intensity']).'</td>'.
+          '</tr>'.
+          '<tr>'.
+            '<th colspan=4>メニュー</th>'.
+          '</tr>'.
+          '<tr>'.
+            '<td colspan=4>'.h($output['menu']).'</td>'.
+          '</tr>'.
+          '<tr>'.
+            '<th colspan=4>感想・意識</th>'.
+          '</tr>'.
+          '<tr>'.
+            '<td colspan=4>'.h($output['thought']).'</td>'.
+          '</tr>'.
+          '<tr>'.
+            '<th colspan=4>写真・動画</th>'.
+          '</tr>'.
+          '<tr>';
+          if (isset($content['content1'])) {
+            echo '<td colspan=2>'. '<img src="'.$content['content1'].'" style="width:100%;">'.'</td>';
+          }else {
+              echo '<td colspan=2></td>';
+          }
+          if (isset($content['content2'])) {
+              echo '<td colspan=2>'. '<img src="'.$content['content2'].'" style="width:100%;">'.'</td>
+              </tr>';
+          }else {
+              echo '<td colspan=2></td>
+              </tr>';
+          }
+          echo 
+          '</table>';
+      }
+  ?>
+  <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
 </body>
 </html>
