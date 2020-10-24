@@ -7,7 +7,7 @@ if(!isset($_SESSION['userID'])){
     header("Location: ./loginPage.php");
     exit;
 }
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 require_once('./htmlSpecialChars.php');
 require_once('./getFirstDayOfTheWeek.php');
 $today = date('Y-m-d');
@@ -20,7 +20,7 @@ $last_day_of_the_week = date('Y-m-d',strtotime($first_day_of_the_week. "next Sun
 // $start_no = ($current_page - 1) * $max_per_page;
 // echo $current_page;
 try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $sql = 'SELECT * FROM physicalconditionlog WHERE userID = ? AND date BETWEEN ? AND ?';
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$_SESSION['userID'],$first_day_of_the_week,$last_day_of_the_week]);

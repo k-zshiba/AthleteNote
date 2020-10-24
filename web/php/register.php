@@ -1,5 +1,5 @@
 <?php
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 session_start();
 
@@ -32,7 +32,7 @@ if (empty($_POST['password']) || empty($_POST['passwordCheck'])) {
         $check_password = password_hash($_POST['passwordCheck'], PASSWORD_DEFAULT);
         //データベースに接続
         try {
-            $pdo = new PDO(DSN, DB_USER, DB_PASS);
+            $pdo = connectDB();
             $stmt = $pdo->prepare("SELECT * FROM userdata WHERE userID = ?");
             $stmt->execute([$_POST['userID']]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);

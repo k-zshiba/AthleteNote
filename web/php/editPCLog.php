@@ -5,7 +5,7 @@ if (!isset($_SESSION['userID'])) {
     exit;
 }
 
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 $userID = $_SESSION['userID'];
 $fatigue = $_POST['fatigue'];
@@ -15,7 +15,7 @@ $bodytemperature = $_POST['bodytemperature'];
 $sleeptime = $_POST['sleeptime'];
 $physical_condition_log_id = $_POST['physicalconditionlogID'];
 try{
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $sql = "UPDATE physicalconditionlog SET fatigue=:fatigue,date=:date,bodyweight=:bodyweight,bodytemperature=:bodytemperature, sleeptime=:sleeptime WHERE physicalconditionlogID = :physicalconditionlogID AND userID = :userID";
     $stmt = $pdo->prepare($sql);
     $physical_condition_log = array(':fatigue'=>$fatigue, ':date'=>$date,':bodyweight'=>$bodyweight,':bodytemperature'=>$bodytemperature,':sleeptime'=>$sleeptime, ':physicalconditionlogID'=>$physical_condition_log_id,':userID'=>$userID);
