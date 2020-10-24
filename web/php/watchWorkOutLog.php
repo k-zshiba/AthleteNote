@@ -111,7 +111,7 @@ try{
             '<td>'. '<button type="submit" name="edit-button"value="'.h($output['contentID']).'">編集</button></td>'.
           '</form>'.
           '<form method="POST" action="deleteWorkOutLog.php" onSubmit = "return deleteIsConfirmed()">'.
-            '<td>'. '<button type="submit" name="delete-button"value="'.h($output['contentID']).'">削除</button></td>'.
+            '<td>'. '<button type="submit" name="delete-button" value="'.h($output['contentID']).'">削除</button></td>'.
           '</form>';
     }
 ?>
