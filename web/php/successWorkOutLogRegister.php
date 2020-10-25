@@ -41,7 +41,7 @@ if(!isset($_SESSION['userID'])){
   </button>
   <div class="text-center col-12">
   <h2>練習ログ登録完了</h2>
-  <button type="button" class="btn btn-info" onclick="location.href = './tweetWorkOutLog.php'"><i class="fab fa-twitter"></i>登録した内容をTwitterに投稿する</button>
+  <button type="button" class="btn btn-info" onclick="location.href = './twitterAuthentication.php'"><i class="fab fa-twitter"></i>登録した内容をTwitterに投稿する</button>
 <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
   </div>
 </html>
