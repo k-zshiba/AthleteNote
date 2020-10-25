@@ -23,12 +23,12 @@ if (isset($_POST['register-btn'])) {
       $stmt->execute([$_SESSION['userID'], $date,$fatigue,$bodyweight,$bodytemperature,$sleeptime]);
       $result = $stmt->rowCount();
       if ($result) {
-          header('Location: ./successRegister.php');
-          exit;
-      }else {
-          echo '登録に失敗しました。';
-      }
-  }catch (PDOException $e) {
+          header('Location: ./successPCLogRegister.php');
+          exit;                       
+      }else {                        
+          echo '登録に失敗しま した。';
+      }                               
+  }catch (PDOException $e) {          
       exit($e->getMessage());
   }
 }
