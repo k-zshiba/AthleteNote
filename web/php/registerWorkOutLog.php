@@ -54,7 +54,8 @@ if (isset($_POST['register-btn'])) {
       $result = $stmt->execute([$contentID,$content1,$content2]);
       $stmt = null;
       $pdo = null;
-      header('Location: ./successRegister.php');
+      createWorkOutLogSession($date,$intensity,$thought,$menu,$content1,$content2);
+      header('Location: ./successWorkOutLogRegister.php');
       exit;
   }catch (PDOException $e) {
       exit($e->getMessage());
