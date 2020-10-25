@@ -54,12 +54,13 @@ if (isset($_POST['register-btn'])) {
       $result = $stmt->execute([$contentID,$content1,$content2]);
       $stmt = null;
       $pdo = null;
-      $_SESSION['date'] = $date;
-      $_SESSION['intensity'] = $intensity;
-      $_SESSION['thought'] = $thought;
-      $_SESSION['menu'] = $menu;
-      $_SESSION['content1'] = $content1;
-      $_SESSION['content2'] = $content2;
+      createWorkOutLogSession($date,$intensity,$thought,$menu,$content1,$content2);
+  $_SESSION['date'] = $date;
+  $_SESSION['intensity'] = $intensity;
+  $_SESSION['thought'] = $thought;
+  $_SESSION['menu'] = $menu;
+  $_SESSION['content1'] = $content1;
+  $_SESSION['content2'] = $content2;
       header('Location: ./successWorkOutLogRegister.php');
       exit;
   }catch (PDOException $e) {
