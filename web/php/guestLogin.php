@@ -1,12 +1,12 @@
 <?php
 
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 
 session_start();
 
 // data base接続
 try{
-  $pdo = new PDO(DSN, DB_USER, DB_PASS);
+  $pdo = connectDB();
 } catch(PDOException $e){
   exit('データベース接続失敗。'.$e->getMessage());
 }

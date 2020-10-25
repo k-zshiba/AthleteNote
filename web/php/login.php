@@ -1,10 +1,10 @@
 <?php
-require_once('./dbConfig.php');
+require_once('./connectDB.php');
 session_start();
 
 // データベースにユーザIDが存在しているか確認
 try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $pdo = connectDB();
     $stmt = $pdo->prepare("SELECT * FROM userdata where userID = ?");
     $stmt->execute([$_POST['userID']]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -1,71 +1,118 @@
 $(function() {
-  $(document).on('click', ".pager-btn", async e=> {
-  
-    const page = $(e.target).val();
-    console.log(this);
-    const res = await get_json(page);
-    createList(res);
-    $(`.pager-btn[value=${page}]`).addClass('active');    
+  let add_to_this_month = 0;
+  $(document).on('click', "#plus-one",async function() {  
+    add_to_this_month += 1;
+    const res = await get_json(add_to_this_month);
+    createChart(res);
   })
-  get_json(1).done(res=>{
-    createList(res);
-    $(`.pager-btn[value=1]`).addClass('active');    
+  $(document).on('click', "#minus-one", async function() {  
+    add_to_this_month -= 1;
+    const res = await get_json(add_to_this_month);
+    createChart(res);
   })
-  
+  get_json(add_to_this_month);
 })
-// });
-function get_json(page) {
-  return $.ajax({
-    url: 'http://localhost:8888/get_json.php',
+
+
+function get_json(add_to_this_month) {
+  $.ajax({
+    url: '../php/getPCJsonData.php',
     type: 'GET',
     data: {
-        page:page
+      add_to_this_month:add_to_this_month
     }
+  }).done(res =>{
+    createChart(res);
   })
 }
 
-
-function createList(res) {
-      const user_list = res.current_page_contents.map(user=> {
-          const gender = ['不明','男性','女性'][user.gender]
-          return `<tr>
-          <td>${escapeHTML(user.code)}</td>
-          <td>${escapeHTML(user.name)}</td>
-          <td>${escapeHTML(user.name_kana)}</td>
-          <td>${gender}</td>
-          <td>${user.created_at}</td>
-          <td>${user.updated_at}</td>
-          <td>
-            <form method = "POST" action = "./update_form.php">
-              <button type="submit">編集</button>
-              <input type="hidden" name = "code" value ='${escape(user.code)}'>
-            </form>
-          </td>
-          <td>
-            <form method = "POST" action = "./delete.php" onSubmit = "return deleteIsConfirmed()">
-              <button type="submit">削除</button>
-              <input type="hidden" name = "code" value ='${escape(user.code)}'>
-            </form>
-          </td>
-          </tr>`;
-      });
-      // console.log(page);
-      const page_btn = [];
-      for (let i=0;i<res.total_page;i++) {
-        // if (i+1===page) {
-          page_btn.push(`<button class="pager-btn" value="${i+1}">${i+1}</button>`);
-        // }else if (i+1!==page) {
-        //   page_btn.push(`<button class="pager-btn" value="${i+1}">${i+1}</button>`);
-        // }
+function createChart(res) {
+  const json_data = res;
+  const ctx = document.getElementById('PC-Chart').getContext('2d');
+  const PC_Chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: json_data.PCDate,
+      datasets: [{
+        label: '疲労度',
+        data: json_data.fatigue,
+        borderColor: [
+            'rgba(0, 45, 65, 1)'          ],
+        fill:false,
+        borderWidth: 1,
+        lineTension: 0,
+      },
+      {
+        label: '体重',
+        data: json_data.bodyweight,
+        borderColor: [
+            'rgba(0, 45, 255, 1)'
+        ],
+        fill:false,
+        borderWidth: 1,
+        lineTension: 0,
+      },
+      {
+        label: '体温',
+        data: json_data.bodytemperature,
+        borderColor: [
+            'rgba(255, 99, 132, 1)'
+        ],
+        fill:false,
+        borderWidth: 1,
+        lineTension: 0,
+      },
+      {
+        label: '睡眠時間',
+        data: json_data.sleeptime,
+        borderColor: [
+            'rgba(255, 45, 255, 1)'
+        ],
+        fill:false,
+        borderWidth: 1,
+        lineTension: 0,
       }
-      $('#user-list tbody').children('tr').remove();
-      $('#user-list tbody').append(user_list);
-      $('#page-button').children('button').remove();
-      $('#page-button').append(page_btn);
+      // {
+      //   label: '睡眠時間',
+      //   data: json_data.sleeptime,
+      //   borderColor: [
+      //       'rgba(255, 45, 255, 1)'
+      //   ],
+      //   fill:false,
+      //   borderWidth: 1,
+      //   lineTension: 0,
+      // },
+      // {
+      //   label: '睡眠時間',
+      //   data: json_data.sleeptime,
+      //   borderColor: [
+      //       'rgba(255, 45, 255, 1)'
+      //   ],
+      //   fill:false,
+      //   borderWidth: 1,
+      //   lineTension: 0,
+      // },
+    ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          stacked: true,
+          gridLines: {
+            display: true,
+            color: "rgba(255,255,255,0.6)"
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+          display: true
+          }
+        }]
+    }}
+  });
 }
 
-function escapeHTML(val) {
-  return $('<div />').text(val).html();
-}
-
-// asd.hoge();
+  function escapeHTML(val) {
+    return $('<div />').text(val).html();
+  }
