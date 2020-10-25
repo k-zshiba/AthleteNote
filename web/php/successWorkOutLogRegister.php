@@ -23,7 +23,7 @@ if(!isset($_SESSION['userID'])){
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-primary" href="./index.html">Athlete Note</a>
+    <a class="navbar-brand text-primary" href="../index.html">Athlete Note</a>
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
