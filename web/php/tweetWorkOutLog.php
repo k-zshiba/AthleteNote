@@ -6,10 +6,10 @@ require "../../vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 $access_token = $_SESSION['access_token'];
 $twitter_connection = new TwitterOAuth(OAUTH_CONSUMER_KEY,OAUTH_CONSUMER_SECRET,$access_token['oauth_token'],$access_token['oauth_token_secret']);
-$userdata = $connection->get("account/verify_credentials");
+$userdata = $twitter_connection->get("account/verify_credentials");
 
-$media1 = $twitter->upload('media/upload', ['media' => $_SESSION['content1']]);
-$media2 = $twitter->upload('media/upload', ['media' => $_SESSION['content2']]);
+$media1 = $twitter_connection->upload('media/upload', ['media' => $_SESSION['content1']]);
+$media2 = $twitter_connection->upload('media/upload', ['media' => $_SESSION['content2']]);
 $tweet_sentence = $_SESSION['date']."\n".
 '強度：'.$_SESSION['intensity']."\n".
 '意識・感想：'.$_SESSION['thought']."\n".
@@ -19,9 +19,9 @@ $parameters = [
     'status' => $tweet_sentence,
     'media_ids' => implode(',', [$media1->media_id_string, $media2->media_id_string])
 ];
-$result = $twitter->post('statuses/update', $parameters);
+$result = $twitter_connection->post('statuses/update', $parameters);
 
-if ($twitter->getLastHttpCode() == 200) {
+if ($twitter_connection->getLastHttpCode() == 200) {
   echo 'ツイート完了しました。';
 } else {
   echo 'ツイートに失敗しました。';
