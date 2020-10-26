@@ -12,6 +12,6 @@ $twitter_request_token = $twitter_connection->oauth('oauth/request_token',['oaut
 $_SESSION['oauth_token'] = $twitter_request_token['oauth_token'];
 $_SESSION['oauth_token_secret'] = $twitter_request_token['oauth_token_secret'];
 
-$authentication_url = $connection->url("oauth/authorize", ["oauth_token" => $_SESSION['oauth_token']]);
+$authentication_url = $twitter_connection->url("oauth/authorize", ["oauth_token" => $_SESSION['oauth_token']]);
 
 header('location:'.$authentication_url);
