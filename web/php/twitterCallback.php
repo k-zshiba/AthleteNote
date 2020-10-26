@@ -8,8 +8,8 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 $twitter_request_token['oauth_token'] = $_SESSION['oauth_token']; 
 $twitter_request_token['oauth_token_secret'] = $_SESSION['oauth_token_secret'];
 
-if (!isset($_REQUEST['oauth_token']) || $request_token['oauth_token'] !== $_REQUEST['oauth_token']) {
-    echo 'Twitterの認証に失敗しました。<br>','<button type="button" class="btn btn-danger" onclick="location.href=\'./topPage.php\'">トップに戻る</button>';
+if (isset($_REQUEST['oauth_token']) && $request_token['oauth_token'] !== $_REQUEST['oauth_token']) {
+    echo 'Twitterの認証に失敗しました。<br>'.'<button type="button" class="btn btn-danger" onclick="location.href=\'./topPage.php\'">トップに戻る</button>';
     exit;
 }else if (isset($_REQUEST['oauth_token']) && $request_token['oauth_token'] === $_REQUEST['oauth_token']) {
     $twitter_connection = new TwitterOAuth(OAUTH_CONSUMER_KEY,OAUTH_CONSUMER_SECRET,$twitter_request_token['oauth_token'],$twitter_request_token['oauth_token_secret']);
