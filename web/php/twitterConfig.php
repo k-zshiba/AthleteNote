@@ -1,5 +1,8 @@
 <?php
-define('OAUTH_CONSUMER_KEY','zBVvOxBvyM8OZ5tSKzHpOQXpq');
-define('OAUTH_CONSUMER_SECRET','17W0w3ErJ4Wld5XoKUlxM9AeyaaAVvqhsoRgNUEg6OLilIaLtj');
+$oauth_consumer_key = getenv('OAUTH_CONSUMER_KEY');
+$oauth_consumer_secret = getenv('OAUTH_CONSUMER_SECRET');
+
+define('OAUTH_CONSUMER_KEY',$oauth_consumer_key);
+define('OAUTH_CONSUMER_SECRET',$oauth_consumer_secret);
 $callback_url = 'https://athlete-note.herokuapp.com/php/twitterCallback.php';
 
