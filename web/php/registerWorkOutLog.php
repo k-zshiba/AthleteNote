@@ -35,14 +35,14 @@ if (isset($_POST['register-btn'])) {
       if (empty(glob($user_contents_folder.'/*'.$contentID))) {
         mkdir($user_content_folder_in_date, 0777, true);
       }
-      if (isset($_FILES['content1'])) {
+      if ($_FILES['content1']['size']) {
           $content1_extension = pathinfo(basename($_FILES['content1']['name']),PATHINFO_EXTENSION);
           $content1 = $user_content_folder_in_date.'/'.'content1.'.$content1_extension;
           move_uploaded_file($_FILES['content1']['tmp_name'],$content1);
       }else {
           $content1 = null;
       }
-      if (isset($_FILES['content2'])) {
+      if ($_FILES['content2']['size']) {
           $content2_extension = pathinfo(basename($_FILES['content2']['name']),PATHINFO_EXTENSION);
           $content2 = $user_content_folder_in_date.'/'.'content2.'.$content2_extension;
           move_uploaded_file($_FILES['content2']['tmp_name'],$content2);
