@@ -43,7 +43,10 @@ try {
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand text-primary" href="../index.html">Athlete Note</a>
-    <ul class="navbar-nav">
+    <?php
+        echo '<p class="mt-3">'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</p>';
+    ?>
+    <ul class="navbar-nav mr-2 mr-sm-2 mr-md-2">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-sliders-h"></i>
@@ -54,45 +57,48 @@ try {
         </div>
       </li>
     </ul>
-    <?php
-        echo '<h2 class="mt-3">'. htmlspecialchars($_SESSION['userID'], ENT_QUOTES, 'utf-8').'さん</h2>';
-    ?>
+
   </nav>
 
   <div class="mt-4 row mx-auto">
-    <div class="col-md-2 col-sm-4">
-      <a class="btn btn-info" href="./registerWorkOutLog.php">練習登録画面へ</a>
+    <div class="col-md-2 col-sm-4 col-6">
+      <a class="btn btn-info mb-2" href="./registerWorkOutLog.php">練習登録画面へ</a>
     </div>
-    <div class="col-md-2 col-sm-4">
-      <a class="btn btn-info" href="./registerPhysicalConditionLog.php">体調登録画面へ</a>
+    <div class="col-md-2 col-sm-4 col-6">
+      <a class="btn btn-info mb-2" href="./registerPhysicalConditionLog.php">体調登録画面へ</a>
     </div>
-    <div class="col-md-2 col-sm-4">
-      <a class="btn btn-info" href="./watchPCLog.php">体調ログ一覧へ</a>
+    <div class="col-md-2 col-sm-4 col-6">
+      <a class="btn btn-info mb-2" href="./watchPCLog.php">体調ログ一覧へ</a>
     </div>
-    <div class="col-md-2 col-sm-4">
-      <a class="btn btn-info" href="./watchWorkOutLog.php">練習ログ一覧へ</a>
+    <div class="col-md-2 col-sm-4 col-6">
+      <a class="btn btn-info mb-2" href="./watchWorkOutLog.php">練習ログ一覧へ</a>
     </div>
-    <div class="col-md-2 col-sm-4">
-      <a class="btn btn-info" href="./watchWorkOutLogForOthers.php">他の人のログを見る</a>
-    </div>  <div class="col-md-2 col-sm-4">
-      <a class="btn btn-danger" href="./logout.php">ログアウト</a>
+    <div class="col-md-2 col-sm-4 col-6">
+      <a class="btn btn-info mb-2" href="./watchWorkOutLogForOthers.php">他の人のログを見る</a>
+    </div>  <div class="col-md-2 col-sm-4 col-6">
+      <a class="btn btn-danger mb-2" href="./logout.php">ログアウト</a>
     </div> 
   </div>
   <div class="PC-chart-container col-12 d-inline-block" style="height: 600px;">
     <canvas id="PC-Chart"></canvas>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-1">
+  <div class="row">
+    <div class="col-6 text-center">
       <i id="minus-one" class="fas fa-caret-square-left fa-5x"></i>
-      <div>
-        <p>前の月へ</p>
-      </div>
     </div>
-    <div class="col-1">
+    <div class="col-6 text-center">
       <i id="plus-one" class="fas fa-caret-square-right fa-5x"></i>
-      <div>
-        <p>次の月へ</p>
-      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 text-center">
+      <h4>前の月へ</h4>
+    </div>
+    <div class="col-6 text-center">
+      <h4>次の月へ</h4>
+    </div>
+  </div>
+
     </div>  
   </div>
 
