@@ -56,57 +56,64 @@ try{
       </li>
     </ul>
   </header>
-  <h2>練習ログ一覧</h2>
-  <?php
-      foreach($row as $output){
-          try{
-              $pdo = connectDB();
-              $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
-              $stmt->execute([$output['contentID']]);
-              $content = $stmt->fetch(PDO::FETCH_ASSOC);
-          }catch (\Exception $e){
-              exit($e->getMessage());
-          }
+  <div class="mb-4 row mx-auto">
+    <div class="col-6 col-sm-4 col-md-4 text-center">
+      <h3>練習ログ一覧</h3>
+    </div>
+    <div class="col-6 col-sm-4 col-md-4">
+      <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
+    </div>
+  </div>
+  <div class="row mx-auto">
+    <?php
+        foreach($row as $output){
+            try{
+                $pdo = connectDB();
+                $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
+                $stmt->execute([$output['contentID']]);
+                $content = $stmt->fetch(PDO::FETCH_ASSOC);
+            }catch (\Exception $e){
+                exit($e->getMessage());
+            }
 
-          echo 
-          '<table border=1 style="width:50%;">'.
-          '<tr>'.
-            '<td colspan=1>'.h($output['date']).'</td>'.
-            '<td colspan=2>'.h($output['userID']).'</td>'.
-            '<td colspan=1>'.h($output['intensity']).'</td>'.
-          '</tr>'.
-          '<tr>'.
-            '<th colspan=4>メニュー</th>'.
-          '</tr>'.
-          '<tr>'.
-            '<td colspan=4>'.h($output['menu']).'</td>'.
-          '</tr>'.
-          '<tr>'.
-            '<th colspan=4>感想・意識</th>'.
-          '</tr>'.
-          '<tr>'.
-            '<td colspan=4>'.h($output['thought']).'</td>'.
-          '</tr>'.
-          '<tr>'.
-            '<th colspan=4>写真・動画</th>'.
-          '</tr>'.
-          '<tr>';
-          if (isset($content['content1'])) {
-            echo '<td colspan=2>'. '<img src="'.$content['content1'].'" style="width:100%;">'.'</td>';
-          }else {
-              echo '<td colspan=2></td>';
-          }
-          if (isset($content['content2'])) {
-              echo '<td colspan=2>'. '<img src="'.$content['content2'].'" style="width:100%;">'.'</td>
-              </tr>';
-          }else {
-              echo '<td colspan=2></td>
-              </tr>';
-          }
-          echo 
-          '</table>';
-      }
-  ?>
-  <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
+            echo 
+            '<div class="col-12 col-sm-6 col-md-4">'.
+              '<table class="table table-bordered table-info">'.
+                '<tr>'.
+                  '<td colspan=1>日付：</br>'.h($output['date']).'</td>'.
+                  '<td colspan=2>ユーザ名：</br>'.h($output['userID']).'</td>'.
+                  '<td colspan=1>強度：</br>'.h($output['intensity']).'</td>'.
+                '</tr>'.
+                '<tr>'.
+                  '<th colspan=4>メニュー</th>'.
+                '</tr>'.
+                '<tr>'.
+                  '<td colspan=4 style="height:100px;">'.h($output['menu']).'</td>'.
+                '</tr>'.
+                '<tr>'.
+                  '<th colspan=4>感想・意識</th>'.
+                '</tr>'.
+                '<tr>'.
+                  '<td colspan=4 style="height:100px;">'.h($output['thought']).'</td>'.
+                '</tr>'.
+                '<tr>'.
+                  '<th colspan=4>写真・動画</th>'.
+                '</tr>'.
+                '<tr>'.
+                '<td colspan=4 style="height:200px;">';
+                if (isset($content['content1'])) {
+                  echo '<img class="m-1" src="'.$content['content1'].'" style="height:100%;width:45%;">';
+                }
+                if (isset($content['content2'])) {
+                    echo '<img class="m-1" src="'.$content['content2'].'" style="height:100%;width:45%;">';
+                }
+                '</td>';
+              echo 
+              '</table>'.
+            '</div>';
+        }
+    ?>
+  </div>
+
 </body>
 </html>
