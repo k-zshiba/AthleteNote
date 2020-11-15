@@ -40,6 +40,10 @@ try{
   <!-- Tempus Dominus -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <!-- My script -->
+  <script src="../javascript/getWorkOutLogList.js"></script>
 </head>
 <body>
   <header class="navbar navbar-expand-lg navbar-light bg-light">
@@ -64,54 +68,57 @@ try{
       <button type="button" class="btn btn-danger" onclick="location.href = './topPage.php'">トップに戻る</button>
     </div>
   </div>
-  <div class="row mx-auto">
+  <div class="row mx-auto mb-1">
+    <div id="page-button"></div>
+  </div>
+  <div class="row mx-auto" id="workout-list">
     <?php
-        foreach($row as $output){
-            try{
-                $pdo = connectDB();
-                $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
-                $stmt->execute([$output['contentID']]);
-                $content = $stmt->fetch(PDO::FETCH_ASSOC);
-            }catch (\Exception $e){
-                exit($e->getMessage());
-            }
+        // foreach($row as $output){
+        //     try{
+        //         $pdo = connectDB();
+        //         $stmt = $pdo->prepare("SELECT * FROM contents WHERE contentID = ?");
+        //         $stmt->execute([$output['contentID']]);
+        //         $content = $stmt->fetch(PDO::FETCH_ASSOC);
+        //     }catch (\Exception $e){
+        //         exit($e->getMessage());
+        //     }
 
-            echo 
-            '<div class="col-12 col-sm-6 col-md-4">'.
-              '<table class="table table-bordered table-info">'.
-                '<tr>'.
-                  '<td colspan=1>日付：</br>'.h($output['date']).'</td>'.
-                  '<td colspan=2>ユーザ名：</br>'.h($output['userID']).'</td>'.
-                  '<td colspan=1>強度：</br>'.h($output['intensity']).'</td>'.
-                '</tr>'.
-                '<tr>'.
-                  '<th colspan=4>メニュー</th>'.
-                '</tr>'.
-                '<tr>'.
-                  '<td colspan=4 style="height:100px;">'.h($output['menu']).'</td>'.
-                '</tr>'.
-                '<tr>'.
-                  '<th colspan=4>感想・意識</th>'.
-                '</tr>'.
-                '<tr>'.
-                  '<td colspan=4 style="height:100px;">'.h($output['thought']).'</td>'.
-                '</tr>'.
-                '<tr>'.
-                  '<th colspan=4>写真・動画</th>'.
-                '</tr>'.
-                '<tr>'.
-                '<td colspan=4 style="height:200px;">';
-                if (isset($content['content1'])) {
-                  echo '<img class="m-1" src="'.$content['content1'].'" style="height:100%;width:45%;">';
-                }
-                if (isset($content['content2'])) {
-                    echo '<img class="m-1" src="'.$content['content2'].'" style="height:100%;width:45%;">';
-                }
-                '</td>';
-              echo 
-              '</table>'.
-            '</div>';
-        }
+        //     echo 
+        //     '<div class="col-12 col-sm-6 col-md-4 workout-content">'.
+        //       '<table class="table table-bordered table-info">'.
+        //         '<tr>'.
+        //           '<td colspan=1>日付：</br>'.h($output['date']).'</td>'.
+        //           '<td colspan=2>ユーザ名：</br>'.h($output['userID']).'</td>'.
+        //           '<td colspan=1>強度：</br>'.h($output['intensity']).'</td>'.
+        //         '</tr>'.
+        //         '<tr>'.
+        //           '<th colspan=4>メニュー</th>'.
+        //         '</tr>'.
+        //         '<tr>'.
+        //           '<td colspan=4 style="height:100px;">'.h($output['menu']).'</td>'.
+        //         '</tr>'.
+        //         '<tr>'.
+        //           '<th colspan=4>感想・意識</th>'.
+        //         '</tr>'.
+        //         '<tr>'.
+        //           '<td colspan=4 style="height:100px;">'.h($output['thought']).'</td>'.
+        //         '</tr>'.
+        //         '<tr>'.
+        //           '<th colspan=4>写真・動画</th>'.
+        //         '</tr>'.
+        //         '<tr>'.
+        //         '<td colspan=4 style="height:200px;">';
+        //         if (isset($content['content1'])) {
+        //           echo '<img class="m-1" src="'.$content['content1'].'" style="height:100%;width:45%;">';
+        //         }
+        //         if (isset($content['content2'])) {
+        //             echo '<img class="m-1" src="'.$content['content2'].'" style="height:100%;width:45%;">';
+        //         }
+        //         '</td>';
+        //       echo 
+        //       '</table>'.
+        //     '</div>';
+        // }
     ?>
   </div>
 
